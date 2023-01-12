@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>This and That</title>
+        <link>http://dayoonsuh.github.io/</link>
+        <description>Recent content on This and That</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 09 Jan 2023 19:20:45 -0500</lastBuildDate><atom:link href="http://dayoonsuh.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>010923</title>
+        <link>http://dayoonsuh.github.io/post/dailyrecord/010923/</link>
+        <pubDate>Mon, 09 Jan 2023 19:20:45 -0500</pubDate>
+        
+        <guid>http://dayoonsuh.github.io/post/dailyrecord/010923/</guid>
+        <description>&lt;p&gt;Here we go again. Fall semester started today. Going to classes has been a while, and I feel I get exhausted easily.
+I want to sleep. All the pressures have become denser. I slept in two of the classes. Earth science is so boring. And those text books and materials are so expensive. I don&amp;rsquo;t want to spend my money on that class but it is required to purchase the book.
+I should manage my time wisely. After living a week, I am going to plan my daily routine. I should routinize my days for time management.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Bakery Sales Analysis</title>
+        <link>http://dayoonsuh.github.io/post/projects/bakery-sales-analysis/</link>
+        <pubDate>Sat, 07 Jan 2023 00:41:40 -0500</pubDate>
+        
+        <guid>http://dayoonsuh.github.io/post/projects/bakery-sales-analysis/</guid>
+        <description>&lt;img src="http://dayoonsuh.github.io/bakery-sales-analysis/sydney-bakery.jpg" alt="Featured image of post Bakery Sales Analysis" /&gt;&lt;p&gt;I am a big fan of French pastries. I love baguette, croissant, macaron, and many other things. Sipping a cup of black coffee with a bite of pain au chocolat is one of my favorite things to start my morning.&lt;/p&gt;
+&lt;p&gt;I found an interesting dataset from Kaggle which is set of records of French bakery sales.&lt;/p&gt;
+&lt;p&gt;Here is the link to the dataset: &lt;a class=&#34;link&#34; href=&#34;https://www.kaggle.com/datasets/matthieugimbert/french-bakery-daily-sales&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;French Bakery Daily Sales&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The dataset belongs to a French bakery. The dataset provides the daily transaction details of customers from 2021-01-01 to 2022-09-30.
+Yearly and weekly saisonalities can be observed.&lt;/p&gt;
+&lt;p&gt;I will go through the data and see if we can gain insight from the sales data for future sales.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Let&amp;rsquo;s dive in!&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;reading-csv-file-using-pandas&#34;&gt;Reading csv file using Pandas&lt;/h2&gt;
+&lt;p&gt;Before I bring the data, I will import libraries that I would be using in this analysis.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import matplotlib as mpl
+import matplotlib.pyplot as plt
+import pandas as pd
+from datetime import datetime
+from collections import Counter
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now we are ready to bring the data.&lt;/p&gt;
+&lt;p&gt;Using pd.read_csv(), I will bring the as pandas dataframe and call it as &amp;ldquo;sales&amp;rdquo;.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sales = pd.read_csv(&amp;#39;Bakery sales.csv&amp;#39;, parse_dates = [&amp;#39;date&amp;#39;])
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When reading the data, I parsed the dates for timely analysis later.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s look at the first 5 rows to see how the data is like.
+&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/saleshead.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sales.head()&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;hooray-we-just-made-our-first-step&#34;&gt;Hooray! We just made our first step!&lt;/h3&gt;
+&lt;p&gt;Just before we get into data cleaning, let&amp;rsquo;s look at the data.
+First, let&amp;rsquo;s see the types and overall summary.&lt;br&gt;
+&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/salesinfo1.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;salesinfo&#34;
+	
+	
+&gt;&lt;br&gt;
+There are 234005 rows and 7 columns. All columns do not have any null data.
+The &amp;ldquo;date&amp;rdquo; column has successfully changed its dtype into datetime object. Great!&lt;/p&gt;
+&lt;p&gt;However, you might notice that the dtype of &amp;ldquo;unit_price&amp;rdquo; is &lt;code&gt;object&lt;/code&gt; which means the data is stored as string values. To do some mathematic calculations with price, we should transform the data type into numeric - float.&lt;/p&gt;
+&lt;p&gt;Going back to the &lt;code&gt;sales.head()&lt;/code&gt;, it seems like that there are a few columns that are not really important, such as &amp;ldquo;Unnamed: 0 &amp;quot; and &amp;ldquo;ticket_number&amp;rdquo;. Also, there are commas in &amp;ldquo;unit_price&amp;rdquo; where it supposed to be dots. We can also remove the euro sign to transform the column data type from string to float for calculations.&lt;/p&gt;
+&lt;p&gt;One thing personally intrigued me was what products the bakery has. To find out what kind of pastries they have, I listed the unique values in the &amp;ldquo;article&amp;rdquo;.&lt;br&gt;
+&lt;code&gt;sales.article.unique()&lt;/code&gt;&lt;br&gt;
+It is a long list of names, but I found a extraordinary value in the article list.&lt;br&gt;
+&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/dot1.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;dotproduct&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Can anybody see the &amp;quot; . &amp;quot; next to &amp;ldquo;FRAISE PISTACHE?&amp;rdquo;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/dot2.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;dotproduct&#34;
+	
+	
+&gt;
+If we look at the data where article is &amp;quot; . &amp;ldquo;, we can observe that the prices for all products names &amp;ldquo;.&amp;rdquo; are all 0. This indicates that articles named &amp;ldquo;.&amp;rdquo; might be products that were given to customers for free.&lt;/p&gt;
+&lt;h2 id=&#34;data-wrangling&#34;&gt;Data Wrangling&lt;/h2&gt;
+&lt;p&gt;We have to prepare our data to be set for analysis.&lt;/p&gt;
+&lt;p&gt;First, I will remove unnecessary columns and only leave columns that we will use.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sales = sales[[&amp;#39;date&amp;#39;,&amp;#39;time&amp;#39;,&amp;#39;article&amp;#39;, &amp;#39;Quantity&amp;#39;, &amp;#39;unit_price&amp;#39;]]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then, I will remove the rows where article name is &amp;quot; . &amp;quot; since it makes noise in our analysis.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;drop_index = sales[sales[&amp;#39;article&amp;#39;] == &amp;#39;.&amp;#39;].index
+sales.drop(drop_index, inplace=True)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When we check if it worked,
+&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/dot3.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;dotproduct&#34;
+	
+	
+&gt;
+YES it worked! It doesn&amp;rsquo;t show any records of article &amp;quot; . &amp;ldquo;.&lt;/p&gt;
+&lt;p&gt;Then I will remove the € symbol and change commas to dots in &amp;ldquo;unit_price&amp;rdquo;.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sales[&amp;#39;unit_price&amp;#39;] = sales[&amp;#39;unit_price&amp;#39;].str.replace(&amp;#39;,&amp;#39;,&amp;#39;.&amp;#39;)
+sales[&amp;#39;unit_price&amp;#39;] = sales[&amp;#39;unit_price&amp;#39;].str.replace(&amp;#39; €&amp;#39;,&amp;#39;&amp;#39;)
+sales[&amp;#39;unit_price&amp;#39;] = pd.to_numeric(sales[&amp;#39;unit_price&amp;#39;])
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;total-price&#34;&gt;Total Price&lt;/h4&gt;
+&lt;p&gt;Next thing we can do is to add a new column &amp;ldquo;total_price&amp;rdquo; that shows the total price of each purchase.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sales[&amp;#39;total_price&amp;#39;] = sales[&amp;#39;Quantity&amp;#39;] * sales[&amp;#39;unit_price&amp;#39;]
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;date--time---year-month-hour&#34;&gt;Date &amp;amp; Time - Year, Month, Hour&lt;/h4&gt;
+&lt;p&gt;Last thing we can do for formatting the dataframe is to add columns of year, month, and hour by extracting numbers from existing date and time columns.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sales[&amp;#39;year&amp;#39;] = sales[&amp;#39;date&amp;#39;].map(lambda x: x.year)
+sales[&amp;#39;month&amp;#39;] = sales[&amp;#39;date&amp;#39;].map(lambda x: x.month)
+sales[&amp;#39;hour&amp;#39;] = sales[&amp;#39;time&amp;#39;].map(lambda x: datetime.strptime(x, &amp;#34;%H:%M&amp;#34;).hour)
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;now-the-dataframe-looks-like&#34;&gt;Now the dataframe looks like&amp;hellip;&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/salesheadanddescribe.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;sales.head()&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Since the minimum and maximum value in hour column is 7 and 20, we can guess that the bakery opens at 7 AM and closes at 8 PM. What I can guess for the negative values in quantity seems to be purchase cancellation or refund.&lt;/p&gt;
+&lt;h2 id=&#34;eda&#34;&gt;EDA&lt;/h2&gt;
+&lt;h4 id=&#34;top-10-most-sold-items&#34;&gt;Top 10 Most Sold Items&lt;/h4&gt;
+&lt;p&gt;What I want to know is the ten most popular items. I will group the data by name of the breads and then sort them by quantity so that we can see how many products are sold for each article.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;itemed = sales.groupby(&amp;#34;article&amp;#34;).sum()
+top_ten = itemed.sort_values(by = &amp;#39;Quantity&amp;#39;, ascending = False).head(10)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/topten.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;topten&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;To show this data with visualization,
+&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/toptengraph.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;toptengraph&#34;
+	
+	
+&gt;
+From 2021-01-02 to 2022-09-30, the most sold item is TRADITIONAL BAGUETTE. The difference between the sales of other popular items, TRADITIONAL BAGUETTE is outstandingly popular.&lt;/p&gt;
+&lt;h4 id=&#34;hourly-sales&#34;&gt;Hourly Sales&lt;/h4&gt;
+&lt;p&gt;It is important to know what time customers visit a lot and how many products are sold at that time since the bakery can prepare for enough breads for customers.&lt;/p&gt;
+&lt;p&gt;Therefore, I grouped the data by hours using &lt;code&gt;sales_by_hour = sales.groupby(&#39;hour&#39;)&lt;/code&gt; to see how many items are sold on average on hourly basis.
+&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/salesbyhour.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;salesbyhour&#34;
+	
+	
+&gt;
+This is sum of the number of sales on hourly basis from Jan 2021 to Sep 2022 - 600 days (excluding closed days).
+I divided the sum of quantity grouped by hours by 600 days to show daily hourly sales on average.&lt;/p&gt;
+&lt;p&gt;Based on the chart, it seems that people buy breads the most in the morning.&lt;/p&gt;
+&lt;p&gt;Hour 7 means from 7:00 to 7:59, approximately 22 items were sold on average.&lt;/p&gt;
+&lt;p&gt;We will not consider hour 20 since it seems like 20 is the closing time. A few purchases made in 20 seems like some customers came in just before closing and bought products.&lt;/p&gt;
+&lt;p&gt;The reason why I am using sum() instead of count() is because of the negative values in Quantity. We are focusing on the number of products sold rather than the number of transactions. count() includes cancelled items while sum() calculates the real total number of products sold.
+&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/hourgraph.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;salesbyhour&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;compare-year-2021-and-2022&#34;&gt;Compare Year 2021 and 2022&lt;/h2&gt;
+&lt;p&gt;Now, I will compare the sales in 2021 and 2022.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sales_2021 = sales[sales[&amp;#39;year&amp;#39;] == 2021]
+sales_2022 = sales[sales[&amp;#39;year&amp;#39;] == 2022]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;For both years, I will find 5 most popular items and monthly sales.
+&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/2021.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2021&#34;
+	
+	
+&gt;
+&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/2022.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2022&#34;
+	
+	
+&gt;
+&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/comparemonthly.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;compare&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;For each month, I will directly compare 2021 and 2022 monthly sales with bar chart. Before I do that, I will make a list of data.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;total21 = sales_2021.groupby(&amp;#39;month&amp;#39;).sum().total_price
+total22 = sales_2022.groupby(&amp;#39;month&amp;#39;).sum().total_price
+total22[10] = 0
+total22[11] = 0
+total22[12] = 0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/comparesalesbymonth.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;compare&#34;
+	
+	
+&gt;
+I will do the same thing for monthly number of products sold.
+&lt;img src=&#34;http://dayoonsuh.github.io/bakery-sales-analysis/comparenumproduct.JPG&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;compare&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;The reason for why 2022 sales are larger than 2021 when the number of products sold is smaller, I guess this is because the bakery increased prices of some of their products.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Analyzing the data from a French bakery, I learned some of the most popular French breads. I didn&amp;rsquo;t know that traditional baguette was very popular.
+I would recommend the store to bake plentiful breads in the morning. Also, I would recommend to hire more workers in summer since the sales were very high during that season.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Another</title>
+        <link>http://dayoonsuh.github.io/post/another/</link>
+        <pubDate>Fri, 06 Jan 2023 23:39:14 -0500</pubDate>
+        
+        <guid>http://dayoonsuh.github.io/post/another/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>010323</title>
+        <link>http://dayoonsuh.github.io/post/dailyrecord/010323/</link>
+        <pubDate>Tue, 03 Jan 2023 23:51:13 -0500</pubDate>
+        
+        <guid>http://dayoonsuh.github.io/post/dailyrecord/010323/</guid>
+        <description>&lt;p&gt;I had tteokguk with my brother today. I was going to season to taste with soy sauce we didn&amp;rsquo;t have it. So, we put a magic powder - ramyeon seasoning.
+It worked out pretty well. Thanks to PKA president for giving me leftover tteokguk.&lt;/p&gt;
+&lt;p&gt;After we were done with lunch, we went to Vienna. My brother had banana nut muffin latte and I just ordered a black coffee with irish cream syrup. I think sugar free syrups have some particular weird taste. But it wasn&amp;rsquo;t too bad. I&amp;rsquo;ll try all the sugar free syrups in Vienna.&lt;/p&gt;
+&lt;p&gt;Tomorrow, I will have vanilla oatmeal with soy milk for breakfast and apple pie banana smoothie for lunch. What a perfect plan. For dinner, I am seeing Se eun. We are going to go Oishi. I have never tried food at Oishi, so I am kind of excited.&lt;/p&gt;
+&lt;p&gt;Starting tomorrow, I will do meditation. I need to increase my focus.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Sampling</title>
+        <link>http://dayoonsuh.github.io/post/personal-learnings/sampling/</link>
+        <pubDate>Mon, 02 Jan 2023 01:04:39 -0500</pubDate>
+        
+        <guid>http://dayoonsuh.github.io/post/personal-learnings/sampling/</guid>
+        <description>&lt;h4 id=&#34;reasons-to-sample&#34;&gt;Reasons to sample:&lt;/h4&gt;
+&lt;p&gt;obtaining &amp;amp; processing the entire data is:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;expensive&lt;/li&gt;
+&lt;li&gt;time consuming&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;types-of-sampling&#34;&gt;Types of sampling&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;simple random sampling&lt;/li&gt;
+&lt;li&gt;sampling with/without replacement&lt;/li&gt;
+&lt;li&gt;stratified sampling&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Using a sample will work IF the sample is REPRESENTATIVE OF THE POPULATION&lt;/li&gt;
+&lt;li&gt;a sample is representative *&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>Linear Regression</title>
+        <link>http://dayoonsuh.github.io/post/test/</link>
+        <pubDate>Wed, 28 Dec 2022 23:13:06 -0500</pubDate>
+        
+        <guid>http://dayoonsuh.github.io/post/test/</guid>
+        <description>&lt;p&gt;The simplest model that we can fit to data is a line. When we are trying to find a line that fits a set of data best, we are performing Linear Regression.&lt;/p&gt;
+&lt;p&gt;A line is determined by its slope and its intercept. In other words, for each point y on a line we can say:&lt;/p&gt;
+&lt;p&gt;y = m x + by=mx+b&lt;/p&gt;
+&lt;p&gt;where &lt;code&gt;m&lt;/code&gt; is the slope, and b is the intercept. &lt;code&gt;y&lt;/code&gt; is a given point on the y-axis, and it corresponds to a given x on the x-axis.&lt;/p&gt;
+&lt;p&gt;The goal is to get the “best” m and b for our data to find the best fit model.&lt;/p&gt;
+&lt;p&gt;For each data point, we calculate loss, a number that measures how bad the model’s prediction was. This loss is calculated as the squared distance from the point to the line. The best m and b is the values that minimize the loss on average across all of the data.&lt;/p&gt;
+&lt;h3 id=&#34;gradient-descent&#34;&gt;Gradient Descent&lt;/h3&gt;
+&lt;p&gt;As we try to minimize loss, we take each parameter we are changing, and move it as long as we are decreasing loss. The process by which we do this is called gradient descent. We move in the direction that decreases our loss the most. &lt;em&gt;Gradient&lt;/em&gt; refers to the slope of the curve at any point.&lt;/p&gt;
+&lt;p&gt;For example, let’s say we are trying to find the intercept for a line. We currently have a guess of 10 for the intercept. At the point of 10 on the curve, the slope is downward. Therefore, if we increase the intercept, we should be lowering the loss. So we follow the gradient downwards.&lt;/p&gt;
+&lt;h3 id=&#34;wrap-up&#34;&gt;Wrap Up!&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;We can measure how well a line fits by measuring &lt;em&gt;loss&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;The goal of linear regression is to minimize loss.&lt;/li&gt;
+&lt;li&gt;To find the line of best fit, we try to find the &lt;code&gt;b&lt;/code&gt; value (intercept) and the &lt;code&gt;m&lt;/code&gt; value (slope) that minimize loss.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Convergence&lt;/em&gt; refers to when the parameters stop changing with each iteration.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Learning rate&lt;/em&gt; refers to how much the parameters are changed on each iteration.&lt;/li&gt;
+&lt;li&gt;We can use Scikit-learn’s &lt;code&gt;LinearRegression()&lt;/code&gt; model to perform linear regression on a set of points.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These are important tools to have in your toolkit as you continue your exploration of data science.&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title></title>
+        <link>http://dayoonsuh.github.io/page/resume/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://dayoonsuh.github.io/page/resume/</guid>
+        <description>&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;img src=&#34;http://dayoonsuh.github.io/resume_cap.jpeg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Resume&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

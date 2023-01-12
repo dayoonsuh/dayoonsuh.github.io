@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='I am a big fan of French pastries. I love baguette, croissant, macaron, and many other things. Sipping a cup of black coffee with a bite of pain au chocolat is one of my favorite things to start my morning.
+I found an interesting dataset from Kaggle which is set of records of French bakery sales.
+Here is the link to the dataset: French Bakery Daily Sales
+The dataset belongs to a French bakery.'>
+<title>Bakery Sales Analysis</title>
+
+<link rel='canonical' href='http://dayoonsuh.github.io/post/projects/bakery-sales-analysis/'>
+
+<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='Bakery Sales Analysis'>
+<meta property='og:description' content='I am a big fan of French pastries. I love baguette, croissant, macaron, and many other things. Sipping a cup of black coffee with a bite of pain au chocolat is one of my favorite things to start my morning.
+I found an interesting dataset from Kaggle which is set of records of French bakery sales.
+Here is the link to the dataset: French Bakery Daily Sales
+The dataset belongs to a French bakery.'>
+<meta property='og:url' content='http://dayoonsuh.github.io/post/projects/bakery-sales-analysis/'>
+<meta property='og:site_name' content='This and That'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-01-07T00:41:40-05:00'/><meta property='article:modified_time' content='2023-01-07T00:41:40-05:00'/><meta property='og:image' content='http://dayoonsuh.github.io/bakery-sales-analysis/sydney-bakery.jpg' />
+<meta name="twitter:title" content="Bakery Sales Analysis">
+<meta name="twitter:description" content="I am a big fan of French pastries. I love baguette, croissant, macaron, and many other things. Sipping a cup of black coffee with a bite of pain au chocolat is one of my favorite things to start my morning.
+I found an interesting dataset from Kaggle which is set of records of French bakery sales.
+Here is the link to the dataset: French Bakery Daily Sales
+The dataset belongs to a French bakery."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://dayoonsuh.github.io/bakery-sales-analysis/sydney-bakery.jpg' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/../assets/img/sorbet_hu0201da65526f6eb0d3fa38e4eda1f604_295054_300x0_resize_q75_box.JPG" width="300"
+                            height="299" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">This and That</a></h1>
+            <h2 class="site-description">Frozen yogurt icecream</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/dayoonsuh/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/page/resume/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>Resume</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/projects/bakery-sales-analysis/">
+                
+                    <img src="/bakery-sales-analysis/sydney-bakery.jpg" loading="lazy" alt="Featured image of post Bakery Sales Analysis" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/projects/bakery-sales-analysis/">Bakery Sales Analysis</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 07, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    6 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>I am a big fan of French pastries. I love baguette, croissant, macaron, and many other things. Sipping a cup of black coffee with a bite of pain au chocolat is one of my favorite things to start my morning.</p>
+<p>I found an interesting dataset from Kaggle which is set of records of French bakery sales.</p>
+<p>Here is the link to the dataset: <a class="link" href="https://www.kaggle.com/datasets/matthieugimbert/french-bakery-daily-sales"  target="_blank" rel="noopener"
+    >French Bakery Daily Sales</a></p>
+<p>The dataset belongs to a French bakery. The dataset provides the daily transaction details of customers from 2021-01-01 to 2022-09-30.
+Yearly and weekly saisonalities can be observed.</p>
+<p>I will go through the data and see if we can gain insight from the sales data for future sales.</p>
+<p><strong>Let&rsquo;s dive in!</strong></p>
+<h2 id="reading-csv-file-using-pandas">Reading csv file using Pandas</h2>
+<p>Before I bring the data, I will import libraries that I would be using in this analysis.</p>
+<pre tabindex="0"><code>import matplotlib as mpl
+import matplotlib.pyplot as plt
+import pandas as pd
+from datetime import datetime
+from collections import Counter
+</code></pre><p>Now we are ready to bring the data.</p>
+<p>Using pd.read_csv(), I will bring the as pandas dataframe and call it as &ldquo;sales&rdquo;.</p>
+<pre tabindex="0"><code>sales = pd.read_csv(&#39;Bakery sales.csv&#39;, parse_dates = [&#39;date&#39;])
+</code></pre><p>When reading the data, I parsed the dates for timely analysis later.</p>
+<p>Let&rsquo;s look at the first 5 rows to see how the data is like.
+<img src="/bakery-sales-analysis/saleshead.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="sales.head()"
+	
+	
+></p>
+<h3 id="hooray-we-just-made-our-first-step">Hooray! We just made our first step!</h3>
+<p>Just before we get into data cleaning, let&rsquo;s look at the data.
+First, let&rsquo;s see the types and overall summary.<br>
+<img src="/bakery-sales-analysis/salesinfo1.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="salesinfo"
+	
+	
+><br>
+There are 234005 rows and 7 columns. All columns do not have any null data.
+The &ldquo;date&rdquo; column has successfully changed its dtype into datetime object. Great!</p>
+<p>However, you might notice that the dtype of &ldquo;unit_price&rdquo; is <code>object</code> which means the data is stored as string values. To do some mathematic calculations with price, we should transform the data type into numeric - float.</p>
+<p>Going back to the <code>sales.head()</code>, it seems like that there are a few columns that are not really important, such as &ldquo;Unnamed: 0 &quot; and &ldquo;ticket_number&rdquo;. Also, there are commas in &ldquo;unit_price&rdquo; where it supposed to be dots. We can also remove the euro sign to transform the column data type from string to float for calculations.</p>
+<p>One thing personally intrigued me was what products the bakery has. To find out what kind of pastries they have, I listed the unique values in the &ldquo;article&rdquo;.<br>
+<code>sales.article.unique()</code><br>
+It is a long list of names, but I found a extraordinary value in the article list.<br>
+<img src="/bakery-sales-analysis/dot1.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="dotproduct"
+	
+	
+></p>
+<p><strong>Can anybody see the &quot; . &quot; next to &ldquo;FRAISE PISTACHE?&rdquo;</strong></p>
+<p><img src="/bakery-sales-analysis/dot2.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="dotproduct"
+	
+	
+>
+If we look at the data where article is &quot; . &ldquo;, we can observe that the prices for all products names &ldquo;.&rdquo; are all 0. This indicates that articles named &ldquo;.&rdquo; might be products that were given to customers for free.</p>
+<h2 id="data-wrangling">Data Wrangling</h2>
+<p>We have to prepare our data to be set for analysis.</p>
+<p>First, I will remove unnecessary columns and only leave columns that we will use.</p>
+<pre tabindex="0"><code>sales = sales[[&#39;date&#39;,&#39;time&#39;,&#39;article&#39;, &#39;Quantity&#39;, &#39;unit_price&#39;]]
+</code></pre><p>Then, I will remove the rows where article name is &quot; . &quot; since it makes noise in our analysis.</p>
+<pre tabindex="0"><code>drop_index = sales[sales[&#39;article&#39;] == &#39;.&#39;].index
+sales.drop(drop_index, inplace=True)
+</code></pre><p>When we check if it worked,
+<img src="/bakery-sales-analysis/dot3.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="dotproduct"
+	
+	
+>
+YES it worked! It doesn&rsquo;t show any records of article &quot; . &ldquo;.</p>
+<p>Then I will remove the € symbol and change commas to dots in &ldquo;unit_price&rdquo;.</p>
+<pre tabindex="0"><code>sales[&#39;unit_price&#39;] = sales[&#39;unit_price&#39;].str.replace(&#39;,&#39;,&#39;.&#39;)
+sales[&#39;unit_price&#39;] = sales[&#39;unit_price&#39;].str.replace(&#39; €&#39;,&#39;&#39;)
+sales[&#39;unit_price&#39;] = pd.to_numeric(sales[&#39;unit_price&#39;])
+</code></pre><h4 id="total-price">Total Price</h4>
+<p>Next thing we can do is to add a new column &ldquo;total_price&rdquo; that shows the total price of each purchase.</p>
+<pre tabindex="0"><code>sales[&#39;total_price&#39;] = sales[&#39;Quantity&#39;] * sales[&#39;unit_price&#39;]
+</code></pre><h4 id="date--time---year-month-hour">Date &amp; Time - Year, Month, Hour</h4>
+<p>Last thing we can do for formatting the dataframe is to add columns of year, month, and hour by extracting numbers from existing date and time columns.</p>
+<pre tabindex="0"><code>sales[&#39;year&#39;] = sales[&#39;date&#39;].map(lambda x: x.year)
+sales[&#39;month&#39;] = sales[&#39;date&#39;].map(lambda x: x.month)
+sales[&#39;hour&#39;] = sales[&#39;time&#39;].map(lambda x: datetime.strptime(x, &#34;%H:%M&#34;).hour)
+</code></pre><h4 id="now-the-dataframe-looks-like">Now the dataframe looks like&hellip;</h4>
+<p><img src="/bakery-sales-analysis/salesheadanddescribe.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="sales.head()"
+	
+	
+></p>
+<p>Since the minimum and maximum value in hour column is 7 and 20, we can guess that the bakery opens at 7 AM and closes at 8 PM. What I can guess for the negative values in quantity seems to be purchase cancellation or refund.</p>
+<h2 id="eda">EDA</h2>
+<h4 id="top-10-most-sold-items">Top 10 Most Sold Items</h4>
+<p>What I want to know is the ten most popular items. I will group the data by name of the breads and then sort them by quantity so that we can see how many products are sold for each article.</p>
+<pre tabindex="0"><code>itemed = sales.groupby(&#34;article&#34;).sum()
+top_ten = itemed.sort_values(by = &#39;Quantity&#39;, ascending = False).head(10)
+</code></pre><p><img src="/bakery-sales-analysis/topten.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="topten"
+	
+	
+></p>
+<p>To show this data with visualization,
+<img src="/bakery-sales-analysis/toptengraph.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="toptengraph"
+	
+	
+>
+From 2021-01-02 to 2022-09-30, the most sold item is TRADITIONAL BAGUETTE. The difference between the sales of other popular items, TRADITIONAL BAGUETTE is outstandingly popular.</p>
+<h4 id="hourly-sales">Hourly Sales</h4>
+<p>It is important to know what time customers visit a lot and how many products are sold at that time since the bakery can prepare for enough breads for customers.</p>
+<p>Therefore, I grouped the data by hours using <code>sales_by_hour = sales.groupby('hour')</code> to see how many items are sold on average on hourly basis.
+<img src="/bakery-sales-analysis/salesbyhour.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="salesbyhour"
+	
+	
+>
+This is sum of the number of sales on hourly basis from Jan 2021 to Sep 2022 - 600 days (excluding closed days).
+I divided the sum of quantity grouped by hours by 600 days to show daily hourly sales on average.</p>
+<p>Based on the chart, it seems that people buy breads the most in the morning.</p>
+<p>Hour 7 means from 7:00 to 7:59, approximately 22 items were sold on average.</p>
+<p>We will not consider hour 20 since it seems like 20 is the closing time. A few purchases made in 20 seems like some customers came in just before closing and bought products.</p>
+<p>The reason why I am using sum() instead of count() is because of the negative values in Quantity. We are focusing on the number of products sold rather than the number of transactions. count() includes cancelled items while sum() calculates the real total number of products sold.
+<img src="/bakery-sales-analysis/hourgraph.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="salesbyhour"
+	
+	
+></p>
+<h2 id="compare-year-2021-and-2022">Compare Year 2021 and 2022</h2>
+<p>Now, I will compare the sales in 2021 and 2022.</p>
+<pre tabindex="0"><code>sales_2021 = sales[sales[&#39;year&#39;] == 2021]
+sales_2022 = sales[sales[&#39;year&#39;] == 2022]
+</code></pre><p>For both years, I will find 5 most popular items and monthly sales.
+<img src="/bakery-sales-analysis/2021.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2021"
+	
+	
+>
+<img src="/bakery-sales-analysis/2022.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2022"
+	
+	
+>
+<img src="/bakery-sales-analysis/comparemonthly.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="compare"
+	
+	
+></p>
+<p>For each month, I will directly compare 2021 and 2022 monthly sales with bar chart. Before I do that, I will make a list of data.</p>
+<pre tabindex="0"><code>total21 = sales_2021.groupby(&#39;month&#39;).sum().total_price
+total22 = sales_2022.groupby(&#39;month&#39;).sum().total_price
+total22[10] = 0
+total22[11] = 0
+total22[12] = 0
+</code></pre><p><img src="/bakery-sales-analysis/comparesalesbymonth.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="compare"
+	
+	
+>
+I will do the same thing for monthly number of products sold.
+<img src="/bakery-sales-analysis/comparenumproduct.JPG"
+	
+	
+	
+	loading="lazy"
+	
+		alt="compare"
+	
+	
+></p>
+<p>The reason for why 2022 sales are larger than 2021 when the number of products sold is smaller, I guess this is because the bakery increased prices of some of their products.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Analyzing the data from a French bakery, I learned some of the most popular French breads. I didn&rsquo;t know that traditional baguette was very popular.
+I would recommend the store to bake plentiful breads in the morning. Also, I would recommend to hire more workers in summer since the sales were very high during that season.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 This and That
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
