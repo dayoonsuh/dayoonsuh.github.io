@@ -6,18 +6,7 @@
         <description>Recent content on This and That</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 09 Jan 2023 19:20:45 -0500</lastBuildDate><atom:link href="http://dayoonsuh.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>010923</title>
-        <link>http://dayoonsuh.github.io/post/dailyrecord/010923/</link>
-        <pubDate>Mon, 09 Jan 2023 19:20:45 -0500</pubDate>
-        
-        <guid>http://dayoonsuh.github.io/post/dailyrecord/010923/</guid>
-        <description>&lt;p&gt;Here we go again. Fall semester started today. Going to classes has been a while, and I feel I get exhausted easily.
-I want to sleep. All the pressures have become denser. I slept in two of the classes. Earth science is so boring. And those text books and materials are so expensive. I don&amp;rsquo;t want to spend my money on that class but it is required to purchase the book.
-I should manage my time wisely. After living a week, I am going to plan my daily routine. I should routinize my days for time management.&lt;/p&gt;
-</description>
-        </item>
-        <item>
+        <lastBuildDate>Sat, 07 Jan 2023 00:41:40 -0500</lastBuildDate><atom:link href="http://dayoonsuh.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Bakery Sales Analysis</title>
         <link>http://dayoonsuh.github.io/post/projects/bakery-sales-analysis/</link>
         <pubDate>Sat, 07 Jan 2023 00:41:40 -0500</pubDate>
@@ -263,32 +252,11 @@ I would recommend the store to bake plentiful breads in the morning. Also, I wou
 </description>
         </item>
         <item>
-        <title>Another</title>
-        <link>http://dayoonsuh.github.io/post/another/</link>
-        <pubDate>Fri, 06 Jan 2023 23:39:14 -0500</pubDate>
-        
-        <guid>http://dayoonsuh.github.io/post/another/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>010323</title>
-        <link>http://dayoonsuh.github.io/post/dailyrecord/010323/</link>
-        <pubDate>Tue, 03 Jan 2023 23:51:13 -0500</pubDate>
-        
-        <guid>http://dayoonsuh.github.io/post/dailyrecord/010323/</guid>
-        <description>&lt;p&gt;I had tteokguk with my brother today. I was going to season to taste with soy sauce we didn&amp;rsquo;t have it. So, we put a magic powder - ramyeon seasoning.
-It worked out pretty well. Thanks to PKA president for giving me leftover tteokguk.&lt;/p&gt;
-&lt;p&gt;After we were done with lunch, we went to Vienna. My brother had banana nut muffin latte and I just ordered a black coffee with irish cream syrup. I think sugar free syrups have some particular weird taste. But it wasn&amp;rsquo;t too bad. I&amp;rsquo;ll try all the sugar free syrups in Vienna.&lt;/p&gt;
-&lt;p&gt;Tomorrow, I will have vanilla oatmeal with soy milk for breakfast and apple pie banana smoothie for lunch. What a perfect plan. For dinner, I am seeing Se eun. We are going to go Oishi. I have never tried food at Oishi, so I am kind of excited.&lt;/p&gt;
-&lt;p&gt;Starting tomorrow, I will do meditation. I need to increase my focus.&lt;/p&gt;
-</description>
-        </item>
-        <item>
         <title>Sampling</title>
-        <link>http://dayoonsuh.github.io/post/personal-learnings/sampling/</link>
+        <link>http://dayoonsuh.github.io/post/studynotes/sampling/</link>
         <pubDate>Mon, 02 Jan 2023 01:04:39 -0500</pubDate>
         
-        <guid>http://dayoonsuh.github.io/post/personal-learnings/sampling/</guid>
+        <guid>http://dayoonsuh.github.io/post/studynotes/sampling/</guid>
         <description>&lt;h4 id=&#34;reasons-to-sample&#34;&gt;Reasons to sample:&lt;/h4&gt;
 &lt;p&gt;obtaining &amp;amp; processing the entire data is:&lt;/p&gt;
 &lt;ol&gt;
@@ -309,10 +277,10 @@ It worked out pretty well. Thanks to PKA president for giving me leftover tteokg
         </item>
         <item>
         <title>Linear Regression</title>
-        <link>http://dayoonsuh.github.io/post/test/</link>
+        <link>http://dayoonsuh.github.io/post/studynotes/linear-regression/</link>
         <pubDate>Wed, 28 Dec 2022 23:13:06 -0500</pubDate>
         
-        <guid>http://dayoonsuh.github.io/post/test/</guid>
+        <guid>http://dayoonsuh.github.io/post/studynotes/linear-regression/</guid>
         <description>&lt;p&gt;The simplest model that we can fit to data is a line. When we are trying to find a line that fits a set of data best, we are performing Linear Regression.&lt;/p&gt;
 &lt;p&gt;A line is determined by its slope and its intercept. In other words, for each point y on a line we can say:&lt;/p&gt;
 &lt;p&gt;y = m x + by=mx+b&lt;/p&gt;

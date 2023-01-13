@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=' '>
-<title></title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='The simplest model that we can fit to data is a line. When we are trying to find a line that fits a set of data best, we are performing Linear Regression.
+A line is determined by its slope and its intercept. In other words, for each point y on a line we can say:
+y = m x &#43; by=mx&#43;b
+where m is the slope, and b is the intercept.'>
+<title>Linear Regression</title>
 
-<link rel='canonical' href='http://dayoonsuh.github.io/page/resume/'>
+<link rel='canonical' href='http://dayoonsuh.github.io/post/studynotes/linear-regression/'>
 
-<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content=''>
-<meta property='og:description' content=' '>
-<meta property='og:url' content='http://dayoonsuh.github.io/page/resume/'>
+<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='Linear Regression'>
+<meta property='og:description' content='The simplest model that we can fit to data is a line. When we are trying to find a line that fits a set of data best, we are performing Linear Regression.
+A line is determined by its slope and its intercept. In other words, for each point y on a line we can say:
+y = m x &#43; by=mx&#43;b
+where m is the slope, and b is the intercept.'>
+<meta property='og:url' content='http://dayoonsuh.github.io/post/studynotes/linear-regression/'>
 <meta property='og:site_name' content='This and That'>
-<meta property='og:type' content='article'><meta property='article:section' content='Page' />
-<meta name="twitter:title" content="">
-<meta name="twitter:description" content=" ">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2022-12-28T23:13:06-05:00'/><meta property='article:modified_time' content='2022-12-28T23:13:06-05:00'/>
+<meta name="twitter:title" content="Linear Regression">
+<meta name="twitter:description" content="The simplest model that we can fit to data is a line. When we are trying to find a line that fits a set of data best, we are performing Linear Regression.
+A line is determined by its slope and its intercept. In other words, for each point y on a line we can say:
+y = m x &#43; by=mx&#43;b
+where m is the slope, and b is the intercept.">
     </head>
     <body class="
     article-page
@@ -118,7 +127,7 @@
         </li>
         
         
-        <li  class='current' >
+        <li >
             <a href='/page/resume/' >
                 
                 
@@ -175,7 +184,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/page/resume/"></a>
+            <a href="/post/studynotes/linear-regression/">Linear Regression</a>
         </h2>
     
         
@@ -186,6 +195,19 @@
     
     
     <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 28, 2022</time>
+            </div>
         
 
         
@@ -199,7 +221,7 @@
 
 
                 <time class="article-time--reading">
-                    0 minute read
+                    2 minute read
                 </time>
             </div>
         
@@ -214,17 +236,25 @@
     <section class="article-content">
     
     
-    <!-- raw HTML omitted -->
-<p><img src="/resume_cap.jpeg"
-	
-	
-	
-	loading="lazy"
-	
-		alt="Resume"
-	
-	
-></p>
+    <p>The simplest model that we can fit to data is a line. When we are trying to find a line that fits a set of data best, we are performing Linear Regression.</p>
+<p>A line is determined by its slope and its intercept. In other words, for each point y on a line we can say:</p>
+<p>y = m x + by=mx+b</p>
+<p>where <code>m</code> is the slope, and b is the intercept. <code>y</code> is a given point on the y-axis, and it corresponds to a given x on the x-axis.</p>
+<p>The goal is to get the “best” m and b for our data to find the best fit model.</p>
+<p>For each data point, we calculate loss, a number that measures how bad the model’s prediction was. This loss is calculated as the squared distance from the point to the line. The best m and b is the values that minimize the loss on average across all of the data.</p>
+<h3 id="gradient-descent">Gradient Descent</h3>
+<p>As we try to minimize loss, we take each parameter we are changing, and move it as long as we are decreasing loss. The process by which we do this is called gradient descent. We move in the direction that decreases our loss the most. <em>Gradient</em> refers to the slope of the curve at any point.</p>
+<p>For example, let’s say we are trying to find the intercept for a line. We currently have a guess of 10 for the intercept. At the point of 10 on the curve, the slope is downward. Therefore, if we increase the intercept, we should be lowering the loss. So we follow the gradient downwards.</p>
+<h3 id="wrap-up">Wrap Up!</h3>
+<ul>
+<li>We can measure how well a line fits by measuring <em>loss</em>.</li>
+<li>The goal of linear regression is to minimize loss.</li>
+<li>To find the line of best fit, we try to find the <code>b</code> value (intercept) and the <code>m</code> value (slope) that minimize loss.</li>
+<li><em>Convergence</em> refers to when the parameters stop changing with each iteration.</li>
+<li><em>Learning rate</em> refers to how much the parameters are changed on each iteration.</li>
+<li>We can use Scikit-learn’s <code>LinearRegression()</code> model to perform linear regression on a set of points.</li>
+</ul>
+<p>These are important tools to have in your toolkit as you continue your exploration of data science.</p>
 
 </section>
 
