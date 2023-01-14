@@ -6,13 +6,70 @@
         <description>Recent content in Posts on This and That</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 07 Jan 2023 00:41:40 -0500</lastBuildDate><atom:link href="http://dayoonsuh.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 14 Jan 2023 16:06:50 -0500</lastBuildDate><atom:link href="http://dayoonsuh.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Introduction to Machine Learning</title>
+        <link>http://dayoonsuh.github.io/post/studynotes/introduction-to-ml/</link>
+        <pubDate>Sat, 14 Jan 2023 16:06:50 -0500</pubDate>
+        
+        <guid>http://dayoonsuh.github.io/post/studynotes/introduction-to-ml/</guid>
+        <description>&lt;h4 id=&#34;machine-learning-ml&#34;&gt;Machine Learning (ML)&lt;/h4&gt;
+&lt;p&gt;Supervised machine learning - combine input to produce useful predictions on new data
+Unsupervised machine learning&lt;/p&gt;
+&lt;h4 id=&#34;key-terminology&#34;&gt;Key Terminology&lt;/h4&gt;
+&lt;p&gt;lable: the variable we are predicting (y)
+ex: house price, sales&lt;/p&gt;
+&lt;p&gt;feature: input variable (x)
+ex: sender&amp;rsquo;s email address, time, words&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Useful features are quantifiable.&lt;/li&gt;
+&lt;li&gt;We train the model with labeled examples and predict the lable on unlabled data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;model: system that defines the relationship between features and lable
+training: creating or learning the model
+inference: appling the trained model to unlabled examples =&amp;gt; use the model to predict y&lt;/p&gt;
+&lt;p&gt;regression - for continuous values
+ex: what is the price?
+classification - for discrete values
+ex: is it spam or not spam?&lt;/p&gt;
+&lt;h2 id=&#34;l2-loss&#34;&gt;L{2} loss&lt;/h2&gt;
+&lt;p&gt;= squared loss
+sum of (y - prediction(x))^2&lt;/p&gt;
+&lt;h2 id=&#34;linear-regression&#34;&gt;Linear Regression&lt;/h2&gt;
+&lt;p&gt;By convention in machine learning, equation for a model is slightly different:&lt;/p&gt;
+&lt;p&gt;y′=b+w1x1&lt;/p&gt;
+&lt;p&gt;where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;y′ is the predicted label (a desired output).&lt;/li&gt;
+&lt;li&gt;b is the bias (the y-intercept), sometimes referred to as w0.&lt;/li&gt;
+&lt;li&gt;w1 is the weight of feature 1. Weight is the same concept as the &amp;ldquo;slope&amp;rdquo; m in the traditional equation of a line.&lt;/li&gt;
+&lt;li&gt;x1 is a feature (a known input).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;training-and-loss&#34;&gt;Training and Loss&lt;/h2&gt;
+&lt;p&gt;GOAL of training is minimize loss.&lt;/p&gt;
+&lt;p&gt;empirical risk minimization: the process which tries to minimize loss by examining a lot of examples.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Mean square error&lt;/strong&gt; (&lt;strong&gt;MSE&lt;/strong&gt;) is the average squared loss per example over the whole dataset. To calculate MSE, sum up all the squared losses for individual examples and then divide by the number of examples:&lt;/p&gt;
+&lt;p&gt;MSE=1N∑(x,y)∈D(y−prediction(x))2&lt;/p&gt;
+&lt;p&gt;where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(x,y) is an example in which
+&lt;ul&gt;
+&lt;li&gt;x is the set of features (ex: minute, age, gender) that the model uses to make predictions.&lt;/li&gt;
+&lt;li&gt;y is the example&amp;rsquo;s label (ex: example, temperature).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;prediction(x) is a function of the weights and bias in combination with the set of features x.&lt;/li&gt;
+&lt;li&gt;D is a data set containing many labeled examples, which are (x,y) pairs.&lt;/li&gt;
+&lt;li&gt;N is the number of examples in D.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>Bakery Sales Analysis</title>
         <link>http://dayoonsuh.github.io/post/projects/bakery-sales-analysis/</link>
         <pubDate>Sat, 07 Jan 2023 00:41:40 -0500</pubDate>
         
         <guid>http://dayoonsuh.github.io/post/projects/bakery-sales-analysis/</guid>
-        <description>&lt;img src="http://dayoonsuh.github.io/bakery-sales-analysis/sydney-bakery.jpg" alt="Featured image of post Bakery Sales Analysis" /&gt;&lt;p&gt;I am a big fan of French pastries. I love baguette, croissant, macaron, and many other things. Sipping a cup of black coffee with a bite of pain au chocolat is one of my favorite things to start my morning.&lt;/p&gt;
+        <description>&lt;img src="http://dayoonsuh.github.io/bakery-sales-analysis/croissant2.jpg" alt="Featured image of post Bakery Sales Analysis" /&gt;&lt;p&gt;I am a big fan of French pastries. I love baguette, croissant, macaron, and many other things. Sipping a cup of black coffee with a bite of pain au chocolat is one of my favorite things to start my morning.&lt;/p&gt;
 &lt;p&gt;I found an interesting dataset from Kaggle which is set of records of French bakery sales.&lt;/p&gt;
 &lt;p&gt;Here is the link to the dataset: &lt;a class=&#34;link&#34; href=&#34;https://www.kaggle.com/datasets/matthieugimbert/french-bakery-daily-sales&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;French Bakery Daily Sales&lt;/a&gt;&lt;/p&gt;
@@ -268,10 +325,11 @@ I would recommend the store to bake plentiful breads in the morning. Also, I wou
 &lt;li&gt;simple random sampling&lt;/li&gt;
 &lt;li&gt;sampling with/without replacement&lt;/li&gt;
 &lt;li&gt;stratified sampling&lt;/li&gt;
+&lt;li&gt;etc&lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
 &lt;li&gt;Using a sample will work IF the sample is REPRESENTATIVE OF THE POPULATION&lt;/li&gt;
-&lt;li&gt;a sample is representative *&lt;/li&gt;
+&lt;li&gt;a sample is representative&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         </item>
