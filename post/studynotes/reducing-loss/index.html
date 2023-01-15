@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='The simplest model that we can fit to data is a line. When we are trying to find a line that fits a set of data best, we are performing Linear Regression.
-A line is determined by its slope and its intercept. In other words, for each point y on a line we can say:
-y = m x &#43; by=mx&#43;b
-where m is the slope, and b is the intercept.'>
-<title>Linear Regression</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Iterative approach to train a model $y′=b&#43;w_1 x_1$
+Squared loss function take 2 inputs: y and y&#39;
+y&amp;rsquo;: The model&amp;rsquo;s prediction for features x y: The correct label corresponding to features x The plot of loss vs. $w_i$ will always be convex (bowl shape) Convex problems have only one minimum =&amp;gt; only 1 place where the slope is exactly 0. That minimum(=local minimum) is where the loss function converges.
+The gradient descent algorithm then calculates the gradient of the loss curve at the starting point.'>
+<title>Reducing Loss</title>
 
-<link rel='canonical' href='http://dayoonsuh.github.io/post/studynotes/linear-regression/'>
+<link rel='canonical' href='http://dayoonsuh.github.io/post/studynotes/reducing-loss/'>
 
-<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='Linear Regression'>
-<meta property='og:description' content='The simplest model that we can fit to data is a line. When we are trying to find a line that fits a set of data best, we are performing Linear Regression.
-A line is determined by its slope and its intercept. In other words, for each point y on a line we can say:
-y = m x &#43; by=mx&#43;b
-where m is the slope, and b is the intercept.'>
-<meta property='og:url' content='http://dayoonsuh.github.io/post/studynotes/linear-regression/'>
+<link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='Reducing Loss'>
+<meta property='og:description' content='Iterative approach to train a model $y′=b&#43;w_1 x_1$
+Squared loss function take 2 inputs: y and y&#39;
+y&amp;rsquo;: The model&amp;rsquo;s prediction for features x y: The correct label corresponding to features x The plot of loss vs. $w_i$ will always be convex (bowl shape) Convex problems have only one minimum =&amp;gt; only 1 place where the slope is exactly 0. That minimum(=local minimum) is where the loss function converges.
+The gradient descent algorithm then calculates the gradient of the loss curve at the starting point.'>
+<meta property='og:url' content='http://dayoonsuh.github.io/post/studynotes/reducing-loss/'>
 <meta property='og:site_name' content='This and That'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2022-12-28T23:13:06-05:00'/><meta property='article:modified_time' content='2022-12-28T23:13:06-05:00'/>
-<meta name="twitter:title" content="Linear Regression">
-<meta name="twitter:description" content="The simplest model that we can fit to data is a line. When we are trying to find a line that fits a set of data best, we are performing Linear Regression.
-A line is determined by its slope and its intercept. In other words, for each point y on a line we can say:
-y = m x &#43; by=mx&#43;b
-where m is the slope, and b is the intercept.">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-01-14T20:15:14-05:00'/><meta property='article:modified_time' content='2023-01-14T20:15:14-05:00'/>
+<meta name="twitter:title" content="Reducing Loss">
+<meta name="twitter:description" content="Iterative approach to train a model $y′=b&#43;w_1 x_1$
+Squared loss function take 2 inputs: y and y&#39;
+y&amp;rsquo;: The model&amp;rsquo;s prediction for features x y: The correct label corresponding to features x The plot of loss vs. $w_i$ will always be convex (bowl shape) Convex problems have only one minimum =&amp;gt; only 1 place where the slope is exactly 0. That minimum(=local minimum) is where the loss function converges.
+The gradient descent algorithm then calculates the gradient of the loss curve at the starting point.">
     </head>
     <body class="
     article-page
@@ -192,7 +192,7 @@ where m is the slope, and b is the intercept.">
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/post/studynotes/linear-regression/">Linear Regression</a>
+            <a href="/post/studynotes/reducing-loss/">Reducing Loss</a>
         </h2>
     
         
@@ -214,7 +214,7 @@ where m is the slope, and b is the intercept.">
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Dec 28, 2022</time>
+                <time class="article-time--published">Jan 14, 2023</time>
             </div>
         
 
@@ -244,25 +244,51 @@ where m is the slope, and b is the intercept.">
     <section class="article-content">
     
     
-    <p>The simplest model that we can fit to data is a line. When we are trying to find a line that fits a set of data best, we are performing Linear Regression.</p>
-<p>A line is determined by its slope and its intercept. In other words, for each point y on a line we can say:</p>
-<p>y = m x + by=mx+b</p>
-<p>where <code>m</code> is the slope, and b is the intercept. <code>y</code> is a given point on the y-axis, and it corresponds to a given x on the x-axis.</p>
-<p>The goal is to get the “best” m and b for our data to find the best fit model.</p>
-<p>For each data point, we calculate loss, a number that measures how bad the model’s prediction was. This loss is calculated as the squared distance from the point to the line. The best m and b is the values that minimize the loss on average across all of the data.</p>
-<h3 id="gradient-descent">Gradient Descent</h3>
-<p>As we try to minimize loss, we take each parameter we are changing, and move it as long as we are decreasing loss. The process by which we do this is called gradient descent. We move in the direction that decreases our loss the most. <em>Gradient</em> refers to the slope of the curve at any point.</p>
-<p>For example, let’s say we are trying to find the intercept for a line. We currently have a guess of 10 for the intercept. At the point of 10 on the curve, the slope is downward. Therefore, if we increase the intercept, we should be lowering the loss. So we follow the gradient downwards.</p>
-<h3 id="wrap-up">Wrap Up!</h3>
+    <h4 id="iterative-approach-to-train-a-model">Iterative approach to train a model</h4>
+<p><strong>$y′=b+w_1 x_1$</strong></p>
+<p>Squared loss function take 2 inputs: <code>y</code> and <code>y'</code></p>
 <ul>
-<li>We can measure how well a line fits by measuring <em>loss</em>.</li>
-<li>The goal of linear regression is to minimize loss.</li>
-<li>To find the line of best fit, we try to find the <code>b</code> value (intercept) and the <code>m</code> value (slope) that minimize loss.</li>
-<li><em>Convergence</em> refers to when the parameters stop changing with each iteration.</li>
-<li><em>Learning rate</em> refers to how much the parameters are changed on each iteration.</li>
-<li>We can use Scikit-learn’s <code>LinearRegression()</code> model to perform linear regression on a set of points.</li>
+<li>y&rsquo;: The model&rsquo;s prediction for features <em>x</em></li>
+<li>y: The correct label corresponding to features <em>x</em></li>
 </ul>
-<p>These are important tools to have in your toolkit as you continue your exploration of data science.</p>
+<p>The plot of loss vs. $w_i$ will always be convex (bowl shape)
+<img src="/graph/loss_vs_weight.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="loss_vs_weight"
+	
+	
+></p>
+<p>Convex problems have only one minimum =&gt; only 1 place where the slope is exactly 0. That minimum(=local minimum) is where the loss function converges.</p>
+<p>The gradient descent algorithm then calculates the gradient of the loss curve at the starting point. The gradient of the loss is equal to the derivative (slope) of the curve, and tells you which direction is negative or positive.</p>
+<p>Gradient is a vector, and it tells us:</p>
+<ul>
+<li>magnitude</li>
+<li>direction</li>
+</ul>
+<h2 id="learning-rate">Learning Rate</h2>
+<p>= step size</p>
+<p>next point = current point + gradient descent * learning rate</p>
+<p>if learning rate is</p>
+<ul>
+<li>too small: learning will take too long</li>
+<li>too big: it will jump over the ideal point and the loss curve does not converge</li>
+</ul>
+<p>The ideal learning rate in one-dimension is $\frac{{1}}{{f(x)″}}$ (the inverse of the second derivative of $f(x)$ at $x$).</p>
+<h2 id="stochastic-gradient-descent">Stochastic Gradient Descent</h2>
+<p>batch:  total number of examples you use to calculate the gradient in a single iteration.</p>
+<p>By choosing random samples from the dataset, we can estimate/get the right gradient <em>on average</em> for much less computation</p>
+<p>Full batch: uses the entire dataset<br>
+<strong>Stochastic gradient descent</strong> -  uses only a single example (a batch size of 1) per iteration.<br>
+<strong>Mini-batch stochastic gradient descent</strong> -  compromise between full-batch iteration and SGD.</p>
+<ul>
+<li>typically between 10 and 1,000 examples, chosen at random.</li>
+<li>reduces the amount of noise in SGD but is still more efficient than full-batch.</li>
+</ul>
+<p>When performing gradient descent on a large data set, mini-batch or SGD is more effective due to time it takes.</p>
 
 </section>
 

@@ -6,60 +6,113 @@
         <description>Recent content in Study Notes on This and That</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 14 Jan 2023 16:06:50 -0500</lastBuildDate><atom:link href="http://dayoonsuh.github.io/categories/study-notes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 14 Jan 2023 20:15:14 -0500</lastBuildDate><atom:link href="http://dayoonsuh.github.io/categories/study-notes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Reducing Loss</title>
+        <link>http://dayoonsuh.github.io/post/studynotes/reducing-loss/</link>
+        <pubDate>Sat, 14 Jan 2023 20:15:14 -0500</pubDate>
+        
+        <guid>http://dayoonsuh.github.io/post/studynotes/reducing-loss/</guid>
+        <description>&lt;h4 id=&#34;iterative-approach-to-train-a-model&#34;&gt;Iterative approach to train a model&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;$y′=b+w_1 x_1$&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Squared loss function take 2 inputs: &lt;code&gt;y&lt;/code&gt; and &lt;code&gt;y&#39;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;y&amp;rsquo;: The model&amp;rsquo;s prediction for features &lt;em&gt;x&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;y: The correct label corresponding to features &lt;em&gt;x&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The plot of loss vs. $w_i$ will always be convex (bowl shape)
+&lt;img src=&#34;http://dayoonsuh.github.io/graph/loss_vs_weight.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;loss_vs_weight&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Convex problems have only one minimum =&amp;gt; only 1 place where the slope is exactly 0. That minimum(=local minimum) is where the loss function converges.&lt;/p&gt;
+&lt;p&gt;The gradient descent algorithm then calculates the gradient of the loss curve at the starting point. The gradient of the loss is equal to the derivative (slope) of the curve, and tells you which direction is negative or positive.&lt;/p&gt;
+&lt;p&gt;Gradient is a vector, and it tells us:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;magnitude&lt;/li&gt;
+&lt;li&gt;direction&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;learning-rate&#34;&gt;Learning Rate&lt;/h2&gt;
+&lt;p&gt;= step size&lt;/p&gt;
+&lt;p&gt;next point = current point + gradient descent * learning rate&lt;/p&gt;
+&lt;p&gt;if learning rate is&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;too small: learning will take too long&lt;/li&gt;
+&lt;li&gt;too big: it will jump over the ideal point and the loss curve does not converge&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The ideal learning rate in one-dimension is $\frac{{1}}{{f(x)″}}$ (the inverse of the second derivative of $f(x)$ at $x$).&lt;/p&gt;
+&lt;h2 id=&#34;stochastic-gradient-descent&#34;&gt;Stochastic Gradient Descent&lt;/h2&gt;
+&lt;p&gt;batch:  total number of examples you use to calculate the gradient in a single iteration.&lt;/p&gt;
+&lt;p&gt;By choosing random samples from the dataset, we can estimate/get the right gradient &lt;em&gt;on average&lt;/em&gt; for much less computation&lt;/p&gt;
+&lt;p&gt;Full batch: uses the entire dataset&lt;br&gt;
+&lt;strong&gt;Stochastic gradient descent&lt;/strong&gt; -  uses only a single example (a batch size of 1) per iteration.&lt;br&gt;
+&lt;strong&gt;Mini-batch stochastic gradient descent&lt;/strong&gt; -  compromise between full-batch iteration and SGD.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;typically between 10 and 1,000 examples, chosen at random.&lt;/li&gt;
+&lt;li&gt;reduces the amount of noise in SGD but is still more efficient than full-batch.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When performing gradient descent on a large data set, mini-batch or SGD is more effective due to time it takes.&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Introduction to Machine Learning</title>
         <link>http://dayoonsuh.github.io/post/studynotes/introduction-to-ml/</link>
         <pubDate>Sat, 14 Jan 2023 16:06:50 -0500</pubDate>
         
         <guid>http://dayoonsuh.github.io/post/studynotes/introduction-to-ml/</guid>
         <description>&lt;h4 id=&#34;machine-learning-ml&#34;&gt;Machine Learning (ML)&lt;/h4&gt;
-&lt;p&gt;Supervised machine learning - combine input to produce useful predictions on new data
+&lt;p&gt;Supervised machine learning - combine input to produce useful predictions on new data&lt;br&gt;
 Unsupervised machine learning&lt;/p&gt;
 &lt;h4 id=&#34;key-terminology&#34;&gt;Key Terminology&lt;/h4&gt;
-&lt;p&gt;lable: the variable we are predicting (y)
+&lt;p&gt;lable: the variable we are predicting ($y$)&lt;br&gt;
 ex: house price, sales&lt;/p&gt;
-&lt;p&gt;feature: input variable (x)
+&lt;p&gt;feature: input variable ($x$)&lt;br&gt;
 ex: sender&amp;rsquo;s email address, time, words&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Useful features are quantifiable.&lt;/li&gt;
-&lt;li&gt;We train the model with labeled examples and predict the lable on unlabled data.&lt;/li&gt;
+&lt;li&gt;Useful features are quantifiable&lt;/li&gt;
+&lt;li&gt;We train the model with labeled examples and predict the lable on unlabled data&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;model: system that defines the relationship between features and lable
 training: creating or learning the model
-inference: appling the trained model to unlabled examples =&amp;gt; use the model to predict y&lt;/p&gt;
-&lt;p&gt;regression - for continuous values
-ex: what is the price?
-classification - for discrete values
-ex: is it spam or not spam?&lt;/p&gt;
-&lt;h2 id=&#34;l2-loss&#34;&gt;L{2} loss&lt;/h2&gt;
-&lt;p&gt;= squared loss
-sum of (y - prediction(x))^2&lt;/p&gt;
+inference: applying the trained model to unlabled examples =&amp;gt; use the model to predict y&lt;/p&gt;
+&lt;p&gt;regression - for continuous values&lt;br&gt;
+ex: What is the price?&lt;/p&gt;
+&lt;p&gt;classification - for discrete values&lt;br&gt;
+ex: Is it spam or not spam?&lt;/p&gt;
+&lt;h2 id=&#34;l_-2-loss&#34;&gt;$L_ 2$ Loss&lt;/h2&gt;
+&lt;p&gt;= sum of squared error loss&lt;br&gt;
+= sum of all (y_actual - y_predicted )$^2$&lt;/p&gt;
 &lt;h2 id=&#34;linear-regression&#34;&gt;Linear Regression&lt;/h2&gt;
 &lt;p&gt;By convention in machine learning, equation for a model is slightly different:&lt;/p&gt;
-&lt;p&gt;y′=b+w1x1&lt;/p&gt;
+&lt;p&gt;$y′=b+w_1 x_1$&lt;/p&gt;
 &lt;p&gt;where:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;y′ is the predicted label (a desired output).&lt;/li&gt;
-&lt;li&gt;b is the bias (the y-intercept), sometimes referred to as w0.&lt;/li&gt;
-&lt;li&gt;w1 is the weight of feature 1. Weight is the same concept as the &amp;ldquo;slope&amp;rdquo; m in the traditional equation of a line.&lt;/li&gt;
-&lt;li&gt;x1 is a feature (a known input).&lt;/li&gt;
+&lt;li&gt;$y′$ is the predicted label (a desired output).&lt;/li&gt;
+&lt;li&gt;$b$ is the bias (the y-intercept), sometimes referred to as $w_0$&lt;/li&gt;
+&lt;li&gt;$w_1$ is the weight of feature 1. Weight is the same concept as the &amp;ldquo;slope&amp;rdquo; m in the traditional equation of a line&lt;/li&gt;
+&lt;li&gt;$x_1$ is a feature (a known input)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;training-and-loss&#34;&gt;Training and Loss&lt;/h2&gt;
-&lt;p&gt;GOAL of training is minimize loss.&lt;/p&gt;
-&lt;p&gt;empirical risk minimization: the process which tries to minimize loss by examining a lot of examples.&lt;/p&gt;
+&lt;p&gt;GOAL of training is &lt;strong&gt;minimize&lt;/strong&gt; loss.&lt;/p&gt;
+&lt;p&gt;empirical risk minimization: the process which tries to minimize loss by examining a lot of examples&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Mean square error&lt;/strong&gt; (&lt;strong&gt;MSE&lt;/strong&gt;) is the average squared loss per example over the whole dataset. To calculate MSE, sum up all the squared losses for individual examples and then divide by the number of examples:&lt;/p&gt;
-&lt;p&gt;MSE=1N∑(x,y)∈D(y−prediction(x))2&lt;/p&gt;
+&lt;p&gt;$MSE=∑(x,y)∈D(y−prediction(x))^2$&lt;/p&gt;
 &lt;p&gt;where:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;(x,y) is an example in which
 &lt;ul&gt;
-&lt;li&gt;x is the set of features (ex: minute, age, gender) that the model uses to make predictions.&lt;/li&gt;
-&lt;li&gt;y is the example&amp;rsquo;s label (ex: example, temperature).&lt;/li&gt;
+&lt;li&gt;x is the set of features (ex: minute, age, gender) that the model uses to make predictions&lt;/li&gt;
+&lt;li&gt;y is the example&amp;rsquo;s label (ex: example, temperature)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;prediction(x) is a function of the weights and bias in combination with the set of features x.&lt;/li&gt;
-&lt;li&gt;D is a data set containing many labeled examples, which are (x,y) pairs.&lt;/li&gt;
-&lt;li&gt;N is the number of examples in D.&lt;/li&gt;
+&lt;li&gt;prediction(x) is a function of the weights and bias in combination with the set of features x&lt;/li&gt;
+&lt;li&gt;D is a data set containing many labeled examples, which are (x,y) pairs&lt;/li&gt;
+&lt;li&gt;N is the number of examples in D&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         </item>

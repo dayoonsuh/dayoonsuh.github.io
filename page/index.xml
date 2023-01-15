@@ -7,11 +7,20 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language><atom:link href="http://dayoonsuh.github.io/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title></title>
-        <link>http://dayoonsuh.github.io/page/resume/</link>
+        <link>http://dayoonsuh.github.io/page/about/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://dayoonsuh.github.io/page/resume/</guid>
-        <description>&lt;!-- raw HTML omitted --&gt;
+        <guid>http://dayoonsuh.github.io/page/about/</guid>
+        <description>&lt;p&gt;Hi! Welcome to my playground :)&lt;/p&gt;
+&lt;p&gt;To briefly introduce myself, I am Dayoon Suh and I am currently studying Data Science and Applied Statistics at Purdue University.&lt;/p&gt;
+&lt;p&gt;This blog is set of records of various things I do, such as personal studies, projects, and sometimes just my daily life.&lt;/p&gt;
+&lt;p&gt;Here are my links:&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/dayoonsuh/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Github&lt;/a&gt;&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://www.linkedin.com/in/dayoonsuh/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;LinkedIn&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I am such a coffee addict. I have a cup of coffee everyday after having breakfast.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;http://dayoonsuh.github.io/resume_cap.jpeg&#34;
 	
 	

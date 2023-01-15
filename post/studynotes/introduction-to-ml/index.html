@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Machine Learning (ML) Supervised machine learning - combine input to produce useful predictions on new data Unsupervised machine learning
-Key Terminology lable: the variable we are predicting (y) ex: house price, sales
-feature: input variable (x) ex: sender&amp;rsquo;s email address, time, words
-Useful features are quantifiable. We train the model with labeled examples and predict the lable on unlabled data. model: system that defines the relationship between features and lable training: creating or learning the model inference: appling the trained model to unlabled examples =&amp;gt; use the model to predict y'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Machine Learning (ML) Supervised machine learning - combine input to produce useful predictions on new data
+Unsupervised machine learning
+Key Terminology lable: the variable we are predicting ($y$)
+ex: house price, sales
+feature: input variable ($x$)
+ex: sender&amp;rsquo;s email address, time, words
+Useful features are quantifiable We train the model with labeled examples and predict the lable on unlabled data model: system that defines the relationship between features and lable training: creating or learning the model inference: applying the trained model to unlabled examples =&amp;gt; use the model to predict y'>
 <title>Introduction to Machine Learning</title>
 
 <link rel='canonical' href='http://dayoonsuh.github.io/post/studynotes/introduction-to-ml/'>
 
 <link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='Introduction to Machine Learning'>
-<meta property='og:description' content='Machine Learning (ML) Supervised machine learning - combine input to produce useful predictions on new data Unsupervised machine learning
-Key Terminology lable: the variable we are predicting (y) ex: house price, sales
-feature: input variable (x) ex: sender&amp;rsquo;s email address, time, words
-Useful features are quantifiable. We train the model with labeled examples and predict the lable on unlabled data. model: system that defines the relationship between features and lable training: creating or learning the model inference: appling the trained model to unlabled examples =&amp;gt; use the model to predict y'>
+<meta property='og:description' content='Machine Learning (ML) Supervised machine learning - combine input to produce useful predictions on new data
+Unsupervised machine learning
+Key Terminology lable: the variable we are predicting ($y$)
+ex: house price, sales
+feature: input variable ($x$)
+ex: sender&amp;rsquo;s email address, time, words
+Useful features are quantifiable We train the model with labeled examples and predict the lable on unlabled data model: system that defines the relationship between features and lable training: creating or learning the model inference: applying the trained model to unlabled examples =&amp;gt; use the model to predict y'>
 <meta property='og:url' content='http://dayoonsuh.github.io/post/studynotes/introduction-to-ml/'>
 <meta property='og:site_name' content='This and That'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-01-14T16:06:50-05:00'/><meta property='article:modified_time' content='2023-01-14T16:06:50-05:00'/>
 <meta name="twitter:title" content="Introduction to Machine Learning">
-<meta name="twitter:description" content="Machine Learning (ML) Supervised machine learning - combine input to produce useful predictions on new data Unsupervised machine learning
-Key Terminology lable: the variable we are predicting (y) ex: house price, sales
-feature: input variable (x) ex: sender&amp;rsquo;s email address, time, words
-Useful features are quantifiable. We train the model with labeled examples and predict the lable on unlabled data. model: system that defines the relationship between features and lable training: creating or learning the model inference: appling the trained model to unlabled examples =&amp;gt; use the model to predict y">
+<meta name="twitter:description" content="Machine Learning (ML) Supervised machine learning - combine input to produce useful predictions on new data
+Unsupervised machine learning
+Key Terminology lable: the variable we are predicting ($y$)
+ex: house price, sales
+feature: input variable ($x$)
+ex: sender&amp;rsquo;s email address, time, words
+Useful features are quantifiable We train the model with labeled examples and predict the lable on unlabled data model: system that defines the relationship between features and lable training: creating or learning the model inference: applying the trained model to unlabled examples =&amp;gt; use the model to predict y">
     </head>
     <body class="
     article-page
@@ -128,7 +137,7 @@ Useful features are quantifiable. We train the model with labeled examples and p
         
         
         <li >
-            <a href='/page/resume/' >
+            <a href='/page/about/' >
                 
                 
                 
@@ -141,7 +150,7 @@ Useful features are quantifiable. We train the model with labeled examples and p
 
 
                 
-                <span>Resume</span>
+                <span>About</span>
             </a>
         </li>
         
@@ -245,53 +254,53 @@ Useful features are quantifiable. We train the model with labeled examples and p
     
     
     <h4 id="machine-learning-ml">Machine Learning (ML)</h4>
-<p>Supervised machine learning - combine input to produce useful predictions on new data
+<p>Supervised machine learning - combine input to produce useful predictions on new data<br>
 Unsupervised machine learning</p>
 <h4 id="key-terminology">Key Terminology</h4>
-<p>lable: the variable we are predicting (y)
+<p>lable: the variable we are predicting ($y$)<br>
 ex: house price, sales</p>
-<p>feature: input variable (x)
+<p>feature: input variable ($x$)<br>
 ex: sender&rsquo;s email address, time, words</p>
 <ul>
-<li>Useful features are quantifiable.</li>
-<li>We train the model with labeled examples and predict the lable on unlabled data.</li>
+<li>Useful features are quantifiable</li>
+<li>We train the model with labeled examples and predict the lable on unlabled data</li>
 </ul>
 <p>model: system that defines the relationship between features and lable
 training: creating or learning the model
-inference: appling the trained model to unlabled examples =&gt; use the model to predict y</p>
-<p>regression - for continuous values
-ex: what is the price?
-classification - for discrete values
-ex: is it spam or not spam?</p>
-<h2 id="l2-loss">L{2} loss</h2>
-<p>= squared loss
-sum of (y - prediction(x))^2</p>
+inference: applying the trained model to unlabled examples =&gt; use the model to predict y</p>
+<p>regression - for continuous values<br>
+ex: What is the price?</p>
+<p>classification - for discrete values<br>
+ex: Is it spam or not spam?</p>
+<h2 id="l_-2-loss">$L_ 2$ Loss</h2>
+<p>= sum of squared error loss<br>
+= sum of all (y_actual - y_predicted )$^2$</p>
 <h2 id="linear-regression">Linear Regression</h2>
 <p>By convention in machine learning, equation for a model is slightly different:</p>
-<p>y′=b+w1x1</p>
+<p>$y′=b+w_1 x_1$</p>
 <p>where:</p>
 <ul>
-<li>y′ is the predicted label (a desired output).</li>
-<li>b is the bias (the y-intercept), sometimes referred to as w0.</li>
-<li>w1 is the weight of feature 1. Weight is the same concept as the &ldquo;slope&rdquo; m in the traditional equation of a line.</li>
-<li>x1 is a feature (a known input).</li>
+<li>$y′$ is the predicted label (a desired output).</li>
+<li>$b$ is the bias (the y-intercept), sometimes referred to as $w_0$</li>
+<li>$w_1$ is the weight of feature 1. Weight is the same concept as the &ldquo;slope&rdquo; m in the traditional equation of a line</li>
+<li>$x_1$ is a feature (a known input)</li>
 </ul>
 <h2 id="training-and-loss">Training and Loss</h2>
-<p>GOAL of training is minimize loss.</p>
-<p>empirical risk minimization: the process which tries to minimize loss by examining a lot of examples.</p>
+<p>GOAL of training is <strong>minimize</strong> loss.</p>
+<p>empirical risk minimization: the process which tries to minimize loss by examining a lot of examples</p>
 <p><strong>Mean square error</strong> (<strong>MSE</strong>) is the average squared loss per example over the whole dataset. To calculate MSE, sum up all the squared losses for individual examples and then divide by the number of examples:</p>
-<p>MSE=1N∑(x,y)∈D(y−prediction(x))2</p>
+<p>$MSE=∑(x,y)∈D(y−prediction(x))^2$</p>
 <p>where:</p>
 <ul>
 <li>(x,y) is an example in which
 <ul>
-<li>x is the set of features (ex: minute, age, gender) that the model uses to make predictions.</li>
-<li>y is the example&rsquo;s label (ex: example, temperature).</li>
+<li>x is the set of features (ex: minute, age, gender) that the model uses to make predictions</li>
+<li>y is the example&rsquo;s label (ex: example, temperature)</li>
 </ul>
 </li>
-<li>prediction(x) is a function of the weights and bias in combination with the set of features x.</li>
-<li>D is a data set containing many labeled examples, which are (x,y) pairs.</li>
-<li>N is the number of examples in D.</li>
+<li>prediction(x) is a function of the weights and bias in combination with the set of features x</li>
+<li>D is a data set containing many labeled examples, which are (x,y) pairs</li>
+<li>N is the number of examples in D</li>
 </ul>
 
 </section>
@@ -303,6 +312,29 @@ sum of (y - prediction(x))^2</p>
     </footer>
 
 
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
     
 </article>
 
