@@ -27,8 +27,8 @@ I am a big fan of ice cream and chocolate.
 <!-- Affiliations Section -->
 <div style="margin-top:20px;">
   <!-- <p>Affiliations:</p> -->
-  <img src="assets\img\purdue.png" alt="Purdue University" style="width:100px; height:auto;">
-  <img src="assets\img\smartlab.png" alt="Another Affiliation" style="width:100px; height:auto;">
-  <img src="assets\img\gwc.png" alt="Another Affiliation" style="width:100px; height:auto;">
+  <img src="assets/img/purdue.png" alt="Purdue University" style="width:100px; height:auto;">
+  <img src="assets/img/smartlab.png" alt="Another Affiliation" style="width:100px; height:auto;">
+  <img src="assets/img/gwc.png" alt="Another Affiliation" style="width:100px; height:auto;">
 </div>
 
