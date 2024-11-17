@@ -20,7 +20,7 @@ social: false # includes social icons at the bottom of the page
 Hi! I am Dayoon Suh.
 
 I am a undergraduate student majoring in Data Science and Applied Statistics at Purdue University. 
-My primary research interests are computer vision, multimodal learning, and robotics. I am excited about the potential applications of AI in solving real-world problems.
+My primary research interests include computer vision, multimodal learning, and robot perception. Particularly, I am interested in enabling robots to perceive, reason, and interact with their surroundings in a human-like manner. Further, I am excited about the potential applications of AI in solving real-world problems.
 
 I am a big fan of ice cream and chocolate. 
 
