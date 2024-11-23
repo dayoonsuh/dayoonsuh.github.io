@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Modeling Human Preferences in Preference-based Reinforcement Learning with Multimodal Transformers
-description: 
+title: PrefMMT
+description: Modeling Human Preferences in Preference-based Reinforcement Learning with Multimodal Transformers
 img: assets/img/publication_preview/prefmmt.jpg
-importance: 1
+importance: 2
 category: Research
-related_publications: true
+related_publications: zhao2024prefmmt
 ---
 Go to: <a href="https://sites.google.com/view/prefmmt">https://sites.google.com/view/prefmmt</a>
 
