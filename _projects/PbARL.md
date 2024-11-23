@@ -2,7 +2,7 @@
 layout: page
 title: PbARL
 description: Personalization in Human-Robot Interaction through Preference-based Action Representation Learning
-img: assets/img/publication_preview/pbarl.jpg
+img: assets/img/publication_preview/pbarlgif.gif
 importance: 1
 category: Research
 related_publications: wang2024personalization
