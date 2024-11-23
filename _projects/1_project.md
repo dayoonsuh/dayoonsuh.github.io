@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: project 1
 description: Reinforcement Learning
 img: assets/img/12.jpg
