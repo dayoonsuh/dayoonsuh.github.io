@@ -22,7 +22,7 @@
             {% endif %}
           </abbr>
         {% else %}
-          <abbr class="badge rounded w-100">{{ entry.abbr }}</abbr>
+          <abbr class="badge rounded w-200">{{ entry.abbr }}</abbr>
         {% endif %}
       {% endif %}
       {% if entry.preview %}
@@ -34,7 +34,7 @@
             include figure.liquid
             loading="eager"
             path=entry_path
-            sizes = "400px"
+            sizes = "200px"
             class="preview z-depth-1 rounded"
             zoomable=true
             alt=entry.preview
