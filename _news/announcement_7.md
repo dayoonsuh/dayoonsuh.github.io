@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Received Mary Ann-Neel Scholarship at Purdue University.
+Received <span style="color: violet;">Mary Ann-Neel Scholarship</span> at Purdue University.

@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Received Data Mine Corporate Partners Scholarship at Purdue University.
+Received <span style="color: violet;">Data Mine Corporate Partners Scholarship</span> at Purdue University.

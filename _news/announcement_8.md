@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-I will join AI & Media Lab at Sungkyunkwan University in Korea as a research intern this summer.
+I will join <span style="color: violet;">AI & Media Lab</span> at <span style="color: violet;">Sungkyunkwan University</span> in Korea as a research intern this summer.

@@ -25,7 +25,7 @@ My primary research interests lie in the intersection of computer vision, multim
 <div style="margin-top:20px;">
   <!-- <p>Affiliations:</p> -->
   <img src="assets/img/purdue.png" alt="Purdue University" style="width:100px; height:auto;">
-  <img src="assets/img/smartlab.png" alt="Another Affiliation" style="width:100px; height:auto;">
-  <img src="assets/img/gwc.png" alt="Another Affiliation" style="width:100px; height:auto;">
+  <img src="assets/img/smartlab.png" alt="SMART Lab" style="width:100px; height:auto;">
+  <img src="assets/img/gwc.png" alt="Girls Who Code" style="width:100px; height:auto;">
 </div>
 

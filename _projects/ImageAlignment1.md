@@ -64,7 +64,7 @@ We define $$ D(I_{\text{ref}}, I_{shift}) $$ as the alignment cost function, whe
 The goal is to find the displacement vectors $$ d_C = (dx_C, dy_C) $$  that minimize the cost function:
 
 $$
-\arg \min_{d_C} D(I_{\text{ref}}, I_{shifted})
+\arg \min_{d_C} D(I_{\text{ref}}, I_{shift})
 $$
 
 ---
@@ -102,6 +102,7 @@ When the reference color was green and the order of channel alignment is RGB, it
 #### Speed of Computation
 
 It turned out that MSE took the least time, followed by NCC, with only a small difference in execution times between the two. However, SSIM took significantly longer to optimize in comparison, indicating that it is computationally more expensive. This is likely due to the more complex nature of SSIM, which evaluates structural information in the images, compared to MSE and NCC, which focus on pixel-based differences and normalized correlations respectively.
+
 # Colorized Outputs
 
 <div class="row">
@@ -127,7 +128,7 @@ It turned out that MSE took the least time, followed by NCC, with only a small d
         {% include figure.liquid loading="eager" path="assets/img/ImageAlignment/results/6_ssim_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-*The results are aligned using NCC metric.*
+*The results are aligned using SSIM metric.*
 
 <br><br><br>
 Check out the code <a href="https://github.com/dayoonsuh/Image-Alignment">here</a>!

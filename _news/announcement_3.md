@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Received Helen Clark Wight Scholarship at Purdue University.
+Received <span style="color: violet;">Helen Clark Wight Scholarship</span> at Purdue University.

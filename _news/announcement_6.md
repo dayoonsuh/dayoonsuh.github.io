@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Excited to join Samsung as a machine learning intern this summer!
+Excited to join <span style="color: violet;">Samsung</span> as a machine learning intern this summer!
