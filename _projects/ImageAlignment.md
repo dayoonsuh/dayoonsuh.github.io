@@ -8,10 +8,10 @@ category: Computer Vision
 ---
 Given a grayscale image consisting of three channel images (R, G, B), the goal is to extract each channel image and align these images to form a single, properly colorized image.
 
-{% include figure.liquid loading="eager" path="assets/img/ImageAlignment/3_ncc_aligned.png" title="example image" class="img-fluid rounded z-depth-1" %}
+{% include figure.liquid loading="eager" path="assets/img/ImageAlignment/results/3_ncc_aligned.png" title="example image" class="img-fluid rounded z-depth-1" %}
 # Mathematical Formulation of the Alignment Procedure
 
-Given a gray scale image $I$ consisting of three channel images $\{I_R, I_G, I_B\} \in \mathbb{R}^{H \times W}$, corresponding to the Red, Green, and Blue channels of a color image, where $ H $ is height, $ W $ is width, the goal is to extract each channel image and align these images to form a single, properly colorized image $ I_{RGB} \in \mathbb{R}^{3 \times H \times W} $, where 3 is the number of channels of an image. The challenge is to find the optimal displacement vectors $(dx_R, dy_R)$, $(dx_G, dy_G)$, and $(dx_B, dy_B)$ that align the channels such that visual artifacts are minimized. Details are illustrated below.
+Given a gray scale image \( I \) consisting of three channel images \(\{I_R, I_G, I_B\} \in \mathbb{R}^{H \times W}\), corresponding to the Red, Green, and Blue channels of a color image, where \( H \) is height, \( W \) is width, the goal is to extract each channel image and align these images to form a single, properly colorized image \( I_{RGB} \in \mathbb{R}^{3 \times H \times W} \), where 3 is the number of channels of an image. The challenge is to find the optimal displacement vectors \((dx_R, dy_R)\), \((dx_G, dy_G)\), and \((dx_B, dy_B)\) that align the channels such that visual artifacts are minimized. Details are illustrated below.
 
 ---
 
@@ -33,22 +33,22 @@ The following steps outline the procedure to align the color channels:
 
 ### 3. Optimization
 
-- Using the Brute Force algorithm, exhaustively search for the displacement vectors $(dx_R, dy_R)$ and $(dx_B, dy_B)$ within the search window $[-15, 15]$ that minimize the align metric.
+- Using the Brute Force algorithm, exhaustively search for the displacement vectors \((dx_R, dy_R)\) and \((dx_B, dy_B)\) within the search window \([-15, 15]\) that minimize the align metric.
 - Evaluate the alignment cost function for each possible displacement within the window.
 - Select the displacement vector that yields the minimum cost as the optimal alignment.
 
-*The displacement vector for the reference color is $(dx_G, dy_G) = (0, 0)$.*
+*The displacement vector for the reference color is \((dx_G, dy_G) = (0, 0)\).*
 
 ### 4. Final Alignment
 
-- Apply the displacements to the uncropped respective channels and merge the aligned channels together to produce the final RGB image $ I_{RGB} $.
+- Apply the displacements to the uncropped respective channels and merge the aligned channels together to produce the final RGB image \( I_{RGB} \).
 
 
 
 
 ## Alignment Costs
 
-We define $D(I_{\text{ref}}, I_{shifted})$ as the alignment cost function, where $I_{\text{ref}}$ is the reference channel image and $I_{shifted}$ is the remaining shifted channel image. (e.g., $I_{\text{ref}} = I_G, I_{shifted} = I_C(x + dx_C, y + dy_C)$ where $C = \{R, B\}$). There are three alignment costs to consider:
+We define \( D(I_{\text{ref}}, I_{shift}) \) as the alignment cost function, where \( I_{\text{ref}} \) is the reference channel image and \( I_{shift} \) is the shifted channel image. (e.g., \( I_{\text{ref}} = I_G, I_{shift} = I_C(x + dx_C, y + dy_C) \) where \( C = \{R, B\} \)). There are three alignment costs to consider:
 
 - **Mean Squared Error (MSE)**
 - **Normalized Cross-Correlation (NCC)**  
@@ -61,7 +61,7 @@ We define $D(I_{\text{ref}}, I_{shifted})$ as the alignment cost function, where
 
 ## Optimization Problem
 
-The goal is to find the displacement vectors $d_C = (dx_C, dy_C)$ that minimize the cost function:
+The goal is to find the displacement vectors \( d_C = (dx_C, dy_C) \)  that minimize the cost function:
 
 $$
 \arg \min_{d_C} D(I_{\text{ref}}, I_{shifted})
@@ -72,7 +72,7 @@ $$
 ## Constraints
 
 ### Search Window:
-To limit the computational cost, the search for $dx$ and $dy$ is restricted to a finite window of pixel size 15, in both $x$ and $y$ directions:
+To limit the computational cost, the search for \( dx \) and \( dy \) is restricted to a finite window of pixel size 15, in both \( x \) and \( y \) directions:
 
 $$
 -15 \leq dx_C, dy_C \leq 15, \text{ for } C \in \{R, B\}.
@@ -109,21 +109,21 @@ It turned out that MSE took the least time, followed by NCC, with only a small d
         {% include figure.liquid loading="eager" path="assets/img/12.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/results/1_ncc_aligned.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/ImageAlignment/results/1_ncc_aligned.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/results/3_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/ImageAlignment/results/3_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/results/4_ncc_aligned.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/ImageAlignment/results/4_ncc_aligned.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/results/5_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/ImageAlignment/results/5_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/results/6_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/ImageAlignment/results/6_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
