@@ -46,7 +46,7 @@ The following steps outline the procedure to align the color channels:
 
 ## Alignment Costs
 
-We define $D(I_{\text{ref}}, I_C)$ as the alignment cost function, where $I_{\text{ref}}$ is the reference channel image and $I_C$ is the remaining shifted channel image. (e.g., $I_{\text{ref}} = I_G, I_C = I_C(x + dx_C, y + dy_C)$ where $C = \{R, B\}$). There are three alignment costs to consider:
+We define $D(I_{\text{ref}}, I_{shifted})$ as the alignment cost function, where $I_{\text{ref}}$ is the reference channel image and $I_{shifted}$ is the remaining shifted channel image. (e.g., $I_{\text{ref}} = I_G, I_{shifted} = I_C(x + dx_C, y + dy_C)$ where $C = \{R, B\}$). There are three alignment costs to consider:
 
 - **Mean Squared Error (MSE)**
 - **Normalized Cross-Correlation (NCC)**  
@@ -62,7 +62,7 @@ We define $D(I_{\text{ref}}, I_C)$ as the alignment cost function, where $I_{\te
 The goal is to find the displacement vectors $d_C = (dx_C, dy_C)$ that minimize the cost function:
 
 $$
-\arg \min_{d_C} D(I_{\text{ref}}, I_C)
+\arg \min_{d_C} D(I_{\text{ref}}, I_{shifted})
 $$
 
 ---
@@ -91,17 +91,37 @@ To ensure an accurate comparison between the image channels, I first cropped the
 
 I experimented with different sizes for the cropped section: 100 × 100, 200 × 200, and the full (uncropped) image. Initially, I thought optimizing the uncropped image would lead to poor alignment because the cost calculation would include the black frame pixels and would increase the gap when the black boundary and non-black boundary meet. However, the alignment turned out better than I expected. That said, the execution time for the uncropped image was significantly longer. I believe the difference in execution time is due to the varying number of pixels being optimized.
 
+### Effect of Metrics
 
-# Results
+#### Alignment Quality
+
+When the reference color was green and the order of channel alignment is RGB, it was not distinguishable which metric performs better in optimization because every metric worked out well. However, the difference showed up when the reference color changed. Overall, MSE proved to be the least effective alignment metric, likely due to its sensitivity to outliers. In contrast, SSIM delivered the best performance, as it focuses on structural similarity rather than pixel-wise differences, making it more robust for alignment tasks.
+
+#### Speed of Computation
+
+It turned out that MSE took the least time, followed by NCC, with only a small difference in execution times between the two. However, SSIM took significantly longer to optimize in comparison, indicating that it is computationally more expensive. This is likely due to the more complex nature of SSIM, which evaluates structural information in the images, compared to MSE and NCC, which focus on pixel-based differences and normalized correlations respectively.
+# Colorized Outputs
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/12.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/results/1_ncc_aligned.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/gwc.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path=""assets/img/results/2_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/12.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/results/3_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/results/4_ncc_aligned.png" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path=""assets/img/results/5_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/results/6_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
