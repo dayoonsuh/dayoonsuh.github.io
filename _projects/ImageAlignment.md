@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Image Alignment
-description: Image channel alignment
-img: assets/img/ImageAlignment/results/3_ncc_aligned.jpg
+description: by minimizing loss (Brute Force approach)
+img: assets/img/ImageAlignment/results/3_ncc_aligned.png
 importance: 1
 category: Computer Vision
 ---
@@ -127,3 +127,7 @@ It turned out that MSE took the least time, followed by NCC, with only a small d
         {% include figure.liquid loading="eager" path="assets/img/ImageAlignment/results/6_ssim_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
+*The results are aligned using NCC metric.*
+
+<br><br><br>
+Check out the code <a href="https://github.com/dayoonsuh/Image-Alignment">here</a>!
