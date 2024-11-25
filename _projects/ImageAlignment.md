@@ -121,7 +121,7 @@ It turned out that MSE took the least time, followed by NCC, with only a small d
         {% include figure.liquid loading="eager" path="assets/img/results/4_ncc_aligned.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path=""assets/img/results/5_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/results/5_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/results/6_ncc_aligned.png"  title="example image" class="img-fluid rounded z-depth-1" %}
