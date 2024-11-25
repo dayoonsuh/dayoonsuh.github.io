@@ -5,7 +5,7 @@ description: Personalization in Human-Robot Interaction through Preference-based
 img: assets/img/publication_preview/pbarlgif.gif
 importance: 1
 category: Research
-related_publications: wang2024personalization
+related_publications: false
 ---
 Go to: <a href="https://sites.google.com/view/pbarl">https://sites.google.com/view/pbarl</a>
 

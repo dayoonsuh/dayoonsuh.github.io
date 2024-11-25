@@ -5,10 +5,6 @@ description: Modeling Human Preferences in Preference-based Reinforcement Learni
 img: assets/img/publication_preview/prefmmtgif.gif
 importance: 2
 category: Research
-related_publications: zhao2024prefmmt
+related_publications: false
 ---
 Go to: <a href="https://sites.google.com/view/prefmmt">https://sites.google.com/view/prefmmt</a>
-
-<div class="publications">
-  {% bibliography -f papers -q @*[key=zhao2024prefmmt]* %}
-</div>
