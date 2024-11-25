@@ -5,7 +5,6 @@ description: with Spatial Transformer Networks
 img: assets/img/ImageAlignment/results/4_ncc_aligned.png
 importance: 2
 category: Computer Vision
-giscus_comments: true
 ---
 
 # Mathematical Formulation and Optimization
