@@ -1,10 +1,10 @@
 ---
 layout: page
-title: project 8
-description: an other project with a background image and giscus comments
-img: assets/img/9.jpg
+title: Image Alignment 2
+description: with Spatial Transformer Networks
+img: assets/img/ImageAlignment/results/4_ncc_aligned.png
 importance: 2
-category: work
+category: Computer Vision
 giscus_comments: true
 ---
 

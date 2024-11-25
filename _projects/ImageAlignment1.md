@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Image Alignment
+title: Image Alignment 1
 description: by minimizing loss (Brute Force approach)
 img: assets/img/ImageAlignment/results/3_ncc_aligned.png
 importance: 1
