@@ -21,7 +21,7 @@ When detecting blobs, 2 common methods are used: Laplacian of Gaussian(LoG) and 
 
 The Laplacian of Gaussian method combines Gaussian smoothing with the Laplacian operator to detect blob-like structures.
 
-#### Steps:
+##### Steps:
 1. Convolve the image with a Gaussian kernel to smooth it and reduce noise.
 2. Apply the Laplacian operator to detect regions where the intensity changes significantly.
 3. Identify the zero-crossings or extrema (local maxima or minima) of the resulting image to detect blobs.
@@ -35,7 +35,7 @@ This is where Difference of Gaussian comes in.
 
 DoG is an approximation of LoG that is computationally more efficient.
 
-#### Steps:
+##### Steps:
 1. Create two versions of the image by smoothing it with Gaussian filters of different standard deviations (\(\sigma_1\) and \(\sigma_2\)).
 2. Subtract the two smoothed images (\(DoG = G_{\sigma_1} - G_{\sigma_2}\)) to highlight areas where intensity changes.
 3. Detect local extrema in the resulting image.
@@ -44,10 +44,12 @@ DoG is an approximation of LoG that is computationally more efficient.
 
 DoG is faster than LoG while providing similar results.
 
+<br>
 
 # Implementation Details
+<br>
 
-### Kernel Size \& Sigma
+### Kernel Size & Sigma
 
 In the implementation, the kernel size is dynamically adjusted based on the value of sigma to ensure that the Gaussian filter captures sufficient image area for accurate blob detection. The kernel size is computed as:
 
@@ -71,6 +73,8 @@ At each iteration, the value of sigma is multiplied by a factor \(k\) which is a
     Left: Initial sigma = 1, Right: Initial sigma = 2
 </div>
 
+<br>
+
 ### Number of Iterations
 The number of iterations in blob detection refers to the number of scales or levels processed by the algorithm during its execution. Iterations are crucial in scale-space representations, as they allow the algorithm to detect blobs of various sizes by progressively increasing the scale of analysis.
 
@@ -92,6 +96,7 @@ The number of iterations in blob detection refers to the number of scales or lev
 Small number of iterations enables faster processing and lower computational load. However, there is a risk of missing blobs, especially those at scales not analyzed during the limited iterations.
 On the other hand, too many iterations can have more comprehensive detection of blobs across a broad range of sizes However, it can cause higher computational cost and potentially redundant or overlapping blob detections.
 
+<br>
 
 ### Factor \(k\)
 
@@ -103,7 +108,9 @@ The scaling factor \(k\) determines the rate at which the scale changes across i
 2. **Detection Accuracy**: Larger values of \(k\) may result in missed blob structures, as the algorithm skips over intermediate scales that might contain critical information.
 3. **Efficiency**: \(k\) provides a balance between computational efficiency and the precision of blob detection. A well-chosen \(k\) ensures that the algorithm is both effective and fast.
 
-### Threshold in Blob Detection
+<br>
+
+### Threshold
 
 The threshold is a critical parameter in blob detection algorithms. It determines the minimum or maximum intensity value that qualifies as a blob, thereby affecting both the sensitivity of the detection and the quality of the results.
 
@@ -130,55 +137,30 @@ The threshold is a critical parameter in blob detection algorithms. It determine
         {% include figure.liquid loading="eager" path="assets/img/BlobDetection/best/butterfly-7-1-0.01-15-blob.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/BlobDetection/kernelsize/butterfly-5-1-0.1-15-blob.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/BlobDetection/threshold/butterfly-5-1-0.1-15-blob.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
     Left: threshold = 0, Middle: threshold = 0.01, Right: threshold = 0.1
 </div>
 
+<br>
+
+## Colorized Outputs with Blobs
+
+Displayed are best results.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/BlobDetection/best/butterfly-7-1-0.01-15-blob.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/BlobDetection/best/einstein-7-1-0.01-15-blob.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/BlobDetection/best/fishes-7-1-0.01-15-blob.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/BlobDetection/best/sunflowers-7-1-0.01-15-blob.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
-
-You can also put regular text between your rows of images, even citations {% cite einstein1950meaning %}.
-Say you wanted to write a bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
-
-{% endraw %}
