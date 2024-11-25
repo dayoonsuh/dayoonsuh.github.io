@@ -2,13 +2,13 @@
 layout: page
 title: Image Alignment
 description: Image channel alignment
-img: assets/img/ImageAlignment/6.jpg
+img: assets/img/ImageAlignment/results/3_ncc_aligned.jpg
 importance: 1
 category: Computer Vision
 ---
 Given a grayscale image consisting of three channel images (R, G, B), the goal is to extract each channel image and align these images to form a single, properly colorized image.
 
-{% include figure.liquid loading="eager" path="assets/img/ImageAlignment/results/3_ncc_aligned.png" title="example image" class="img-fluid rounded z-depth-1" %}
+{% include figure.liquid loading="eager" path="assets/img/ImageAlignment/teaser.png" title="example image" class="img-fluid rounded z-depth-1" %}
 # Mathematical Formulation of the Alignment Procedure
 
 Given a gray scale image $$ I $$ consisting of three channel images $$\{I_R, I_G, I_B\} \in \mathbb{R}^{H \times W}$$, corresponding to the Red, Green, and Blue channels of a color image, where $$ H $$ is height, $$ W $$ is width, the goal is to extract each channel image and align these images to form a single, properly colorized image $$ I_{RGB} \in \mathbb{R}^{3 \times H \times W} $$, where 3 is the number of channels of an image. The challenge is to find the optimal displacement vectors $$(dx_R, dy_R)$$, $$(dx_G, dy_G)$$, and $$(dx_B, dy_B)$$ that align the channels such that visual artifacts are minimized. Details are illustrated below.
