@@ -13,9 +13,9 @@ giscus_comments: true
 ## Spatial Transformer Network and Optimization
 Following the settings of previous post (Image Alignment using Brute Force), our objective function for finding the optimal displacement vector is denoted as:
 
-\[
+$$
 dx^*, dy^* = \arg \min_{dx \in X, dy \in Y} L(\text{shift}(A, dx, dy), B)
-\]
+$$
 
 where \(X\) and \(Y\) are search spaces, \(dx\) and \(dy\) represent the shift in the \(x\) and \(y\) directions, \(L\) is the cost metric, and \(A\) and \(B\) are image channels.
 
@@ -29,19 +29,19 @@ For cost metric, we use Means Squared Error (MSE) and Normalized Correlation Coe
 
 The affine transformation matrix for translation can be defined as:
 
-\[
+$$
 \theta = 
 \begin{bmatrix}
 1 & 0 & dx \\
 0 & 1 & dy
 \end{bmatrix}
-\]
+$$
 
 Since we are only performing translation (without scaling, rotation, or shearing), the only trainable parameters in the matrix are \(dx\) and \(dy\). This affine transformation matrix is used to generate a grid of coordinates for the shifted version of the input image \(A\).
 
 Thus, the transformation of a point \((x, y)\) using this affine transformation matrix is represented as:
 
-\[
+$$
 T_{\theta} =
 \begin{bmatrix}
 1 & 0 & dx \\
@@ -52,19 +52,19 @@ x \\
 y \\
 1
 \end{bmatrix}
-\]
+$$
 
 ## Optimization Using Gradient Descent
 
 To optimize the image alignment, we minimize a given loss function \(L\) with respect to the displacement parameters \(dx\) and \(dy\). The optimization is performed using gradient descent, which iteratively updates the displacement values in the direction that reduces the loss:
 
-\[
+$$
 dx_{n+1} = dx_n - \alpha \nabla_{dx}L(\text{shift}(A, dx, dy), B)
-\]
+$$
 
-\[
+$$
 dy_{n+1} = dy_n - \alpha \nabla_{dy}L(\text{shift}(A, dx, dy), B)
-\]
+$$
 
 where \(\alpha\) is the learning rate, \(n\) is the number of iterations, and \(\nabla_{dx, dy}L\) represents the gradient of the loss function with respect to \(dx\) and \(dy\). The image shifting process is performed using bilinear interpolation. This interpolation method provides a more accurate approximation when displacements are not integer values, which helps preserve image quality during the alignment process.
 
@@ -72,27 +72,27 @@ where \(\alpha\) is the learning rate, \(n\) is the number of iterations, and \(
 
 ### The gradient of \(dx\) is denoted as:
 
-\[
+$$
 \frac{\partial A^*[x_i', y_i']}{\partial x_i} = \sum_{n=1}^{H} \sum_{m=1}^{W} A[n, m] \, \max(0, 1 - |y_i - n|) \cdot 
 \begin{cases} 
 0 & \text{if } |m - x_i| \geq 1 \\
 1 & \text{if } m \geq x_i \\
 -1 & \text{if } m \leq x_i 
 \end{cases}
-\]
+$$
 
 ---
 
 ### The gradient of \(dy\) is denoted as:
 
-\[
+$$
 \frac{\partial A^*[x_i', y_i']}{\partial y_i} = \sum_{n=1}^{H} \sum_{m=1}^{W} A[n, m] \, \max(0, 1 - |x_i - m|) \cdot 
 \begin{cases} 
 0 & \text{if } |n - y_i| \geq 1 \\
 1 & \text{if } n \geq y_i \\
 -1 & \text{if } n \leq y_i 
 \end{cases}
-\]
+$$
 
 ---
 
