@@ -19,6 +19,8 @@ Given 2 photos of UT tower, we are going to stitch these two images to create a 
     </div>
 </div>
 
+<br>
+
 ## Steps for Image Stitching
 
 1. Load the images into grayscale image
@@ -33,8 +35,12 @@ Given 2 photos of UT tower, we are going to stitch these two images to create a 
 
 ## Details
 
+<br>
+
 ## 1. Load the images into grayscale image
 Load the images and convert them into grayscale image.
+
+<br>
 
 ## 2. Detect key points in both images
 
@@ -45,22 +51,27 @@ Extract corner key points using Harris Corner Detector.
         {% include figure.liquid loading="eager" path="assets/img/ImageStitching/best/img1_keypoint_vis.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/ImageStitching/best/img1_keypoint_vis.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/ImageStitching/best/img2_keypoint_vis.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
+
+<br>
 
 ## 3. Extract features for key points
 
 Extract local neighborhoods around every keypoint in both images.
 
+<br>
 
 ## 4. Match features between images
 
 Once features are detected, match them across adjacent images. Compute L2 distances between every descriptor in one image and every descriptor in the other image. Then, select putative matches based on the matrix of pairwise descriptor distances.
 
 <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/ImageStitching/best/inlier_matches_pixel.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/ImageStitching/best/inlier_matches_pixel_crop.png" title="example image" class="img-fluid rounded z-depth-1" %}
 </div>
+
+<br>
 
 ## 5. Calculate homography
 With matched features, compute the homography matrix, which maps points from one image to the corresponding points in the next. To estimate the homography matrix, we use RANSAC algorithm. 
@@ -80,9 +91,12 @@ Given matched feature points between two images,
 3. Measure how well the candidate homography aligns the rest of the points (based on a threshold for reprojection error).
 4. Keep the homography matrix that produces the highest number of inliers.
 
+<br>
 
 ## 6. Refit with inliers
 Once homography matrix and inliers are obtained, refit the homography matrix using only the inliers.
+
+<br>
 
 ## 7. Warp one image onto the other
 
@@ -91,10 +105,21 @@ Using the homography matrix obtained from previous step, warp images into the sa
 
 Then, image stiching is done and we have our panorama image!
 
+<br>
+
 ## Using Hynet Descriptor
 Instead of using pixel descriptor, we can use pre-trained HyNet descriptor. HyNet takes in a 32 × 32 patch and outputs a feature vector of size 128.
 
+Using Hynet feature descriptor gives us more accurate matched keypoints.
+
+<div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/ImageStitching/best/inlier_matches_hynet_crop.png" title="example image" class="img-fluid rounded z-depth-1" %}
+</div>
+
+<br>
 Hynet usually provides better results than that of using pixel descriptor with different parameter settings (patch size, number of iterations, threshold, etc.)
+
+<br>
 
 ## Results
 
