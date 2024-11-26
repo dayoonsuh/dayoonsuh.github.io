@@ -1,10 +1,10 @@
 ---
 layout: page
-title: project 6
-description: a project with no image
+title: Photometric Stereo
+description: Shape from Shading
 img:
 importance: 4
-category: fun
+category: Computer Vision
 ---
 
 Every project has a beautiful feature showcase page.
