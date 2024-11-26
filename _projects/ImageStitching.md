@@ -134,3 +134,7 @@ Hynet usually provides better results than that of using pixel descriptor with d
 <div class="caption">
     Left: pixel, Right: Hynet
 </div>
+
+<br>
+
+Check out the code <a href="https://github.com/dayoonsuh/Image-Stitching">here</a>!

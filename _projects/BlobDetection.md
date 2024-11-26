@@ -164,3 +164,5 @@ Displayed are best results.
         {% include figure.liquid loading="eager" path="assets/img/BlobDetection/best/sunflowers-7-1-0.01-15-blob.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
+
+Check out the code <a href="https://github.com/dayoonsuh/Blob-Detection">here</a>!
