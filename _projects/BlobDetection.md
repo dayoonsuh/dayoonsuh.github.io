@@ -36,8 +36,8 @@ This is where Difference of Gaussian comes in.
 DoG is an approximation of LoG that is computationally more efficient.
 
 ##### Steps:
-1. Create two versions of the image by smoothing it with Gaussian filters of different standard deviations (\(\sigma_1\) and \(\sigma_2\)).
-2. Subtract the two smoothed images (\(DoG = G_{\sigma_1} - G_{\sigma_2}\)) to highlight areas where intensity changes.
+1. Create two versions of the image by smoothing it with Gaussian filters of different standard deviations $$\sigma_1$$ and $$\sigma_2$$.
+2. Subtract the two smoothed images ($$DoG = G_{\sigma_1} - G_{\sigma_2}$$) to highlight areas where intensity changes.
 3. Detect local extrema in the resulting image.
 4. Downsample the image instead of increasing kernel size for better efficiency.
 
