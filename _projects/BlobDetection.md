@@ -57,7 +57,7 @@ $$
 \text{kernel size} = \text{int}(2 \times \text{round}(3 \times \sigma) + 1)
 $$
 
-This formula ensures that the kernel size is large enough to encompass the main extent of the Gaussian distribution. Specifically, the value \(3 \times \sigma \) corresponds to approximately three standard deviations of the Gaussian, which covers over 99% of the distribution.
+This formula ensures that the kernel size is large enough to encompass the main extent of the Gaussian distribution. Specifically, the value $$3 \times \sigma $$ corresponds to approximately three standard deviations of the Gaussian, which covers over 99% of the distribution.
 
 At each iteration, the value of sigma is multiplied by a factor $$k$$ which is a configurable parameter. As a result, the kernel size also increases proportionally with $$k$$. Consequently, the outcomes are influenced by the initial value of sigma that is chosen.
 
@@ -100,7 +100,7 @@ On the other hand, too many iterations can have more comprehensive detection of 
 
 ### Factor $$k$$
 
-The scaling factor $$k$$ had a significant impact on the blob detection process. After conducting several trials, the best results were obtained with a scaling factor of \(k = 1.3\). This value provided the most accurate detection across various blob sizes, particularly in capturing the appropriate blob structures within the image. When the scaling factor deviated from 1.3, the algorithm struggled to properly detect blobs, either failing to capture important features or generating erroneous blob detections.
+The scaling factor $$k$$ had a significant impact on the blob detection process. After conducting several trials, the best results were obtained with a scaling factor of $$k = 1.3$$. This value provided the most accurate detection across various blob sizes, particularly in capturing the appropriate blob structures within the image. When the scaling factor deviated from 1.3, the algorithm struggled to properly detect blobs, either failing to capture important features or generating erroneous blob detections.
 
 #### Why is $$k$$ Important?
 The scaling factor $$k$$ determines the rate at which the scale changes across iterations in the blob detection algorithm. It affects:
