@@ -82,7 +82,7 @@ The number of iterations in blob detection refers to the number of scales or lev
 
 1. **Scale-Space Construction**:
    - Blob detection algorithms, like Difference of Gaussians (DoG) or Laplacian of Gaussian (LoG), analyze the image at multiple scales to ensure blobs of all sizes are captured.
-   - Each iteration corresponds to analyzing the image at a specific scale determined by the scaling factor \(\text{k}\) and the initial sigma.
+   - Each iteration corresponds to analyzing the image at a specific scale determined by the scaling factor $$k$$ and the initial sigma.
 
 2. **Blob Size Coverage**:
    - Increasing the number of iterations ensures that a wider range of blob sizes is analyzed.
