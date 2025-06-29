@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Received 1 paper accepted to <span style="color: violet;">CVPR 2025.
+1 paper accepted to <span style="color: violet;">CVPR 2025.
