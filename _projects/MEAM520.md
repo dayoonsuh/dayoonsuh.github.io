@@ -4,7 +4,7 @@ title: Block Pick & Place with Frank Panda
 description: Franka Panda - Block Pick and Place
 img: assets\img\MEAM520\4stacked.jpg
 importance: 2
-category: Robotics
+category: etc
 related_publications: false
 ---
 
