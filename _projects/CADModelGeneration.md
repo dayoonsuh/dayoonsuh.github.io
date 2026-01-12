@@ -4,7 +4,7 @@ title: 3D CAD Generation
 description: CAD model generation using VLM
 img: assets/img/CAD/redpot.png
 importance: 2
-category: Research
+category: Robotics
 related_publications: false
 ---
 
@@ -83,5 +83,6 @@ The resulting system produces CAD models that are:
     {% include figure.liquid loading="eager" path="assets/img/CAD/scooter.png" title="example image" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
+
 
 
