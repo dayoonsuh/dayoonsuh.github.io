@@ -4,7 +4,7 @@ title: 3D CAD Generation
 description: CAD model generation using VLM
 img: assets/img/CAD/redpot.png
 importance: 2
-category: Robotics
+category: etc
 related_publications: false
 ---
 

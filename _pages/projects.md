@@ -5,7 +5,7 @@ permalink: /projects/
 description: My projects.
 nav: true
 nav_order: 3
-display_categories: [Research,  Computer Vision, Data Science]
+display_categories: [Research,  Computer Vision, Data Science, etc]
 horizontal: false
 ---
 
