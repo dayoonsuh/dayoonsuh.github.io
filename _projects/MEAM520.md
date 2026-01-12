@@ -45,7 +45,7 @@ The pipeline closes the loop from perception to execution:
 ### Demos
 
 <video controls muted playsinline width="60%" preload="metadata">
-  <source src="{{ '/assets/videos/staticblock.mp4' | relative_url }}" type="video/mp4">
+  <source src="assets/staticblock.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
