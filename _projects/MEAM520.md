@@ -15,9 +15,11 @@ The pipeline closes the loop from perception to execution:
 
 - **Perception:** AprilTag-based block detections from an end-effector-mounted camera 
 - **Frame transforms:** Convert block poses from camera frame to base frame via FK and calibrated camera extrinsics:  
-  \[
-  {}^{0}T_b = {}^{0}T_e \cdot {}^{e}T_c \cdot {}^{c}T_b
-  \]
+  $$
+  {}^{world}T_b = {}^{world}T_e \cdot {}^{e}T_c \cdot {}^{c}T_b
+  $$
+  
+  
 - **Grasp generation:** Construct pre-grasp / grasp poses using an approach offset to account for gripper geometry and clearance. 
 - **Planning & Control:** Solve numerical IK with joint-limit checks; execute collision-safe motions.
 
@@ -36,22 +38,20 @@ The pipeline closes the loop from perception to execution:
    - Move to a fixed **hover pose** near the turntable (keeps the EE safely above the workspace while enabling consistent detections).
    - Select a target using a simple heuristic (**leftmost block**) for repeatability.
    - Predict an intercept pose using a **constant angular velocity** model: rotate the detected pose forward by  
-     \[
-     \theta = \omega \Delta t
-     \]
+     $$\theta = \omega \Delta t$$
      then solve IK for the predicted grasp pose.  
    - Execute grasp; use gripper width feedback to detect success; on failure, return to hover, reopen gripper, and retry with a new detection. 
 
 ### Demos
 
-<video controls muted playsinline width="100%" preload="metadata">
-  <source src="/assets/videos/meam520/staticblock.mp4" type="video/mp4">
+<video controls muted playsinline width="60%" preload="metadata">
+  <source src="assets\img\MEAM520\staticblock.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
 
-<video controls muted playsinline width="100%" preload="metadata">
-  <source src="/assets/videos/meam520/dynamicblock.mp4" type="video/mp4">
+<video controls muted playsinline width="60%" preload="metadata">
+  <source src="assets\img\MEAM520\dynamicblock.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
