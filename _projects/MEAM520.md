@@ -42,6 +42,20 @@ The pipeline closes the loop from perception to execution:
      then solve IK for the predicted grasp pose.  
    - Execute grasp; use gripper width feedback to detect success; on failure, return to hover, reopen gripper, and retry with a new detection. 
 
+### Demos
+
+<video controls muted playsinline width="100%" preload="metadata">
+  <source src="/assets/videos/meam520/staticblock.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
+<video controls muted playsinline width="100%" preload="metadata">
+  <source src="/assets/videos/meam520/dynamicblock.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
 ### Results (Sim → Real)
 - **Static blocks:** Highly reliable in simulation and partially transferable to hardware after tuning.
 - **Dynamic blocks:** Sensitive to perception noise and timing; dominant hardware failure mode was **pose noise + timing**. 
