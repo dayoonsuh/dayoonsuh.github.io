@@ -44,16 +44,14 @@ The pipeline closes the loop from perception to execution:
 
 ### Demos
 
-<video controls muted playsinline width="60%" preload="metadata">
-  <source src="assets/staticblock.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-
-<video controls muted playsinline width="60%" preload="metadata">
-  <source src="../assets/img/MEAM520/dynamicblock.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include video.liquid path="assets/video/staticblock.mp4" class="img-fluid rounded z-depth-1" controls=true autoplay=true %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include video.liquid path="assets/video/dynamicblock.mp4" class="img-fluid rounded z-depth-1" controls=true %}
+    </div>
+</div>
 
 
 ### Results (Sim → Real)
