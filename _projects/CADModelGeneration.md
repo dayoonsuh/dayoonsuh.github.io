@@ -65,7 +65,7 @@ The resulting system produces CAD models that are:
 - **Structured:** Geometry is built from meaningful operations rather than implicit surfaces
 - **Constraint-aware:** Validation + evolutionary search reduces common errors (wrong scale, broken symmetry, missing features)
 - **Iterative:** Supports a natural “generate → evaluate → evolve” loop
-
+<!-- 
 <div class="row">
   <div class="col-12 mt-3">
     {% include figure.liquid loading="eager" path="assets/img/CAD/redpot.png" title="example image" class="img-fluid rounded z-depth-1" %}
@@ -82,7 +82,7 @@ The resulting system produces CAD models that are:
   <div class="col-12 mt-3">
     {% include figure.liquid loading="eager" path="assets/img/CAD/scooter.png" title="example image" class="img-fluid rounded z-depth-1" %}
   </div>
-</div>
+</div> -->
 
 
 
