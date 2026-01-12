@@ -1,0 +1,43 @@
+---
+layout: page
+title: 3D CAD Generation
+description: CAD model generation using VLM
+img: assets/img/CAD/redpot.png
+importance: 2
+category: Research
+related_publications: false
+---
+
+# CAD Model Generation using Vision-Language Models (VLMs)
+
+This project explores **CAD model generation with Vision-Language Models (VLMs)** by translating natural-language requirements into **parametric, editable CAD programs** rather than static meshes. A common limitation of generative 3D outputs is that they can look reasonable but fail practical design needs such as **dimension control, symmetry, manufacturability, and easy iteration**.
+
+## Overview
+
+We designed and implemented an end-to-end pipeline that turns a user’s text prompt (and optionally reference images) into a structured CAD program, then improves it through iterative feedback.
+
+## What We Built
+
+- **Intent understanding:** Parses user requirements from text and images
+- **Program generation:** Produces **parametric CAD code** (e.g., sketches, extrusions, fillets, hole patterns)
+- **Preview & validation:** Renders previews and runs lightweight **constraint checks** (e.g., dimensions, symmetry, placement validity)
+- **Iterative refinement:** Updates the CAD program based on detected issues and natural-language feedback
+
+## Motivation
+
+Instead of generating a single “finished” 3D mesh, this project focuses on generating **editable CAD** that supports real design workflows. By representing geometry as a parametric program, the output becomes easier to modify (e.g., “make the handle thicker,” “add four symmetric holes,” “increase height by 20%”) and more compatible with engineering constraints.
+
+## Outcome
+
+The resulting system produces CAD models that are:
+- **Editable:** Changes can be applied by modifying parameters or operations
+- **Structured:** Geometry is built from meaningful operations rather than implicit surfaces
+- **Constraint-aware:** Validation and refinement reduce common errors (wrong scale, broken symmetry, missing features)
+- **Iterative:** Supports a natural “generate → check → fix” loop
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/CAD/redpot.png" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+
